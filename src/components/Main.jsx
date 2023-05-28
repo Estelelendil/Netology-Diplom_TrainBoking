@@ -13,7 +13,7 @@ export default function Main() {
       <div className="h-[993px]  bg-[url('img/search.png')] bg-cover border-b-8 border-orange">
 
           <HeaderMenu />
-          <div className='pt-[253px] flex pl-[379px] gap-[104px]'>
+          <div className='pt-[253px] flex justify-center p-l-[50px] gap-[120px]'>
             <div clasName="flex flex-col ">
                 <h1 className=' mt-[162px] text-white text-72 font-thin'>Вся жизнь -
               </h1>
