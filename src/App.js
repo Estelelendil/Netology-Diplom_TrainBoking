@@ -1,6 +1,5 @@
 import './App.css';
 import { Route, Routes } from 'react-router';
-import HeaderMenu from './components/HeaderMenu';
 // import Main from './components/Main';
 import HowItWorksPage from './components/SubMain/HowItWorksPage';
 import ReviewsPage from './components/SubMain/ReviewsPage';
@@ -11,14 +10,14 @@ function App() {
   return (
     <>
       <div >
-        <HeaderMenu />
+
+        <Main />
         <Routes>
           {/* <Route path="/" exact element={<Main />} /> */}
           <Route path="/how-it-works" element={<HowItWorksPage />} />
           <Route path="/reviews" element={<ReviewsPage />} />
           <Route path="/contacts" element={<ContactPage />} />
         </Routes>
-        <Main />
       </div>
     </>);
 }

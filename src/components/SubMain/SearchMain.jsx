@@ -2,7 +2,7 @@
   
   export default function SearchMain() {
     return (
-      <div>
+      <div className='w-[729px] h-[574px] bg-black/80'>
         SearchMain
       </div>
     );

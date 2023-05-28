@@ -10,11 +10,16 @@ module.exports = {
         white: "#FFFFFF",
         "dark-red": "#C10000",
         red: "#FF0034",
+        orange: "#FFA800",
         gray: "#274568",
         "dark-gray": "#16293F",
         "back-gray": "#F6F8FA",
         "light-gray": "#F7F7F7",
         "green": "#00B5AD",
+        backgroundImage: {
+          'search': "url('img/search.png')",
+
+        }
       },
       fontSize: {
         8: ['8px', '11px'],
@@ -28,6 +33,8 @@ module.exports = {
         16: ['16px', '22.4px'],
         18: ['18px', '25px'],
         20: ["20px", "28px"],
+        24: ["24px", "32px"],
+        30: ["30px", "40px"],
         36: ["36px", "44px"],
         56: ["56px", "67.2px"],
         72: ["72px", "86.4px"],
@@ -50,8 +57,8 @@ module.exports = {
         'gradient-1': 'linear-gradient(180deg, rgba(255, 0, 0, 0.5) 0%, rgba(255, 0, 0, 0.7) 100%)'
       },
       screens: {
-        "380px": {'max': '380px'},
-        'laptop': {'max': '1100px'},
+        "380px": { 'max': '380px' },
+        'laptop': { 'max': '1100px' },
       },
       transitionProperty: {
         'invisible': ['visibility', 'opacity']
