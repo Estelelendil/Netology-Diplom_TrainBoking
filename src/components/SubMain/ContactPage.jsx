@@ -1,4 +1,6 @@
 import React from 'react';
+import Button from '../UI/Button';
+import Input from '../UI/Input';
 
 export default function ContactPage() {
   return (
@@ -29,7 +31,21 @@ export default function ContactPage() {
       </div>
       <div className='flex flex-col gap-[32px] mt-[49px]'>
     <h2 className='text-white font-semibold text-30 '>Подписка</h2>
+    {/* <p className='w-[400px] text-white text-24'>Будьте в курсе событий</p> */}
+    <div className='flex w-full gap-[36px] items-end'>
+<Input text='Будьте в курсе событий' placeholder='e-mail'/>
+<Button label='Oтправить' color='transparent'/>
+    </div>
+    <h2 className='text-white font-semibold text-30 '>Подписывайтесь на нас</h2>
+    <div className='flex gap-[49px] items-center w-full h-[30px]'>
+       <button className="bg-[url('img/Vector1.png')] h-[30px] w-[50px] bg-no-repeat bg-center"></button>
+       <button className="bg-[url('img/Vector2.png')] h-[30px] w-[50px] bg-no-repeat bg-center"></button>
+       <button className="bg-[url('img/Vector3.png')] h-[30px] w-[50px] bg-no-repeat bg-center"></button>
+       <button className="bg-[url('img/Vector4.png')] h-[30px] w-[50px] bg-no-repeat bg-center"></button>
+       <button className="bg-[url('img/Vector5.png')] h-[30px] w-[50px] bg-no-repeat bg-center"></button>
+       </div>
     </div>
     </div>
   );
 }
+ 
