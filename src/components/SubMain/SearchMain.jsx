@@ -1,8 +1,6 @@
-import { useState } from 'react';
   import React from 'react';
-import Calendar from 'react-calendar';
 import Button from '../UI/Button';
-  import Input from '../UI/Input';
+import InputCalendar from '../UI/InputCalendar';
 import InputDropdown from '../UI/InputDropdown';
 
   export default function SearchMain() {
@@ -31,14 +29,14 @@ import InputDropdown from '../UI/InputDropdown';
 //   text:'Санкт-Петербург'
 // }]
     const submitSearch = (form) => {}
-    const [dateFrom, setDateFrom] = useState(new Date());
+    // const [dateFrom, setDateFrom] = useState(new Date());
     return (
       // {data&& !loading ? <div>{data.status}</div>:null}
       // {error ? <dv>{error}</dv>:null}
-      <div className=' h-[574px] bg-black/80 px-[24px] pt-[79px]'>
+      <div className='  bg-black/80 flex flex-col gap-[80px] px-[24px] pt-[79px] pb-[52px]'>
         <div className='flex flex-col'>
           <h2 className='text-white'>Направление</h2>
-          <div className='flex gap-[40px] w-full'>
+          <div className='flex justify-between'>
           {/* <Input name='citySearch' placeholder='Откуда'setValue={setCitySearch} /> */}
         {/* {loading ? <Loading/>:null} */}
             {/* {data?<Select name='cityfrom'  options={data} setValue={setSelectionCty} placeholder='Откуда'/>:null} */}
@@ -49,12 +47,14 @@ import InputDropdown from '../UI/InputDropdown';
         </div>
         <div className='flex flex-col'>
           <h2 className='text-white'>Дата</h2>
-          <div className='flex gap-[40px] w-full'>
+          <div className='flex justify-between'>
           {/* <Calendar onChange={setDateFrom} value={dateFrom} /> */}
-            <Input name='dateto' placeholder='ДД/ММ/ГГ'/>
+          <InputCalendar required name='datefrom' placeholder='ДД/ММ/ГГ'/>
+          <InputCalendar required name='dateto' placeholder='ДД/ММ/ГГ'/>
+            {/* <Input name='dateto' placeholder='ДД/ММ/ГГ'/> */}
           </div>
         </div>
-        <Button label='найти билеты' onClick={submitSearch} color='orange'/>
+        <Button className='w-[323px] self-end' label='найти билеты' onClick={submitSearch} color='orange'/>
       </div>
     );
   }

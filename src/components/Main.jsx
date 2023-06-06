@@ -10,10 +10,10 @@ import SearchMain from './SubMain/SearchMain';
 export default function Main() {
   return (
     <div>
-      <div className="h-[993px]  bg-[url('img/search.png')] bg-cover border-b-8 border-orange">
+      <div className="h-[993px] flex flex-col justify-between bg-[url('img/search.png')] bg-cover border-b-8 border-orange">
 
           <HeaderMenu />
-          <div className='pt-[253px] flex justify-center p-l-[50px] gap-[120px]'>
+          <div className=' flex justify-center p-l-[50px] gap-[120px]'>
             <div clasName="flex flex-col ">
                 <h1 className=' mt-[162px] text-white text-72 font-thin'>Вся жизнь -
               </h1>
