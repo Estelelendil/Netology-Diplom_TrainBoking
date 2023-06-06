@@ -11,9 +11,9 @@ export default function Progress({active, amount}) {
       {arr.map((item, index)=>{
         if(index+1!==active){return(
         
-      <div className='w-[19px] h-[19px] bg-gray/20 rounded-full mx-1'></div>)
+      <div key={item} className='w-[19px] h-[19px] bg-gray/20 rounded-full mx-1'></div>)
 }else{return(
-    <div className='w-[19px] h-[19px] bg-gray/40 rounded-full mx-1'></div>
+    <div key={item} className='w-[19px] h-[19px] bg-gray/40 rounded-full mx-1'></div>
 )}})}
     </div>
   );
