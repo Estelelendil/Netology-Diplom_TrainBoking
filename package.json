@@ -27,14 +27,47 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "eslint --ext js --ext jsx src",
+    "lint:fix": "eslint --ext js --ext jsx --fix src"
   },
   "eslintConfig": {
+    "root": true,
+    "env": {
+      "browser": true,
+      "es6": true
+    },
+    "plugins": [
+      "prettier"
+    ],
     "extends": [
+      "prettier",
       "eslint:recommended",
       "react-app",
       "react-app/jest"
-    ]
+    ],
+    "rules": {
+      "no-debugger":"warn",
+      "semi": [
+        "error",
+        "always"
+      ],
+      "quotes": [
+        "error",
+        "double"
+      ],
+      "prettier/prettier": [
+        "error",
+        {
+          "singleQuote": false,
+          "printWidth": 120,
+          "tabWidth": 2,
+          "jsxSingleQuote": false,
+          "bracketSameLine": false,
+          "endOfLine": "auto"
+        }
+      ]
+    }
   },
   "browserslist": {
     "production": [
@@ -47,5 +80,11 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.32.2",
+    "prettier": "^2.8.8"
   }
 }
