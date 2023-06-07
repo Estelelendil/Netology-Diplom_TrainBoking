@@ -46,6 +46,7 @@ export function useLazyJsonFetch() {
   const [error, setError] = useState(null);
 
   const callback = useCallback((url, searchParams) => {
+    console.log("searchParams", searchParams);
     if (url != null) {
       if (searchParams) {
         const newUrl = url + "?" + new URLSearchParams(searchParams).toString();
