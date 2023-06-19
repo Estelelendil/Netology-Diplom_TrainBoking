@@ -65,6 +65,7 @@ export default function SearchMain() {
             className="w-[286px] self-end text-24 mt-[20px] mr-[35px]"
             label="найти билеты"
             // onClick={submitSearch}
+            //при нажатии на книпку делать перевод на страницу и менять конфигурацию поисковика
             type="submit"
             color="orange"
           />
