@@ -1,34 +1,55 @@
-import { useState } from "react";
+// import { useState } from "react";
 import React from "react";
 import { useForm } from "react-hook-form";
-import { useLazyJsonFetch } from "../../utils";
 import Button from "../UI/Button";
 import InputCalendar from "../UI/InputCalendar";
 import InputDropdown from "../UI/InputDropdown";
+import classNames from "classnames";
+import { useNavigate } from "react-router";
+// import { useLazyJsonFetch } from "../../utils";
 
-export default function SearchMain() {
-  const [searchFirstView, setSearchFirstView] = useState(true);
+export default function SearchMain({ setStep, step, setSearchParams, searchParams }) {
+  // const [searchFirstView, setSearchFirstView] = useState("zero");
+  //Вынести отсюда логику запроса в Main
   const { control, handleSubmit } = useForm();
-  const [data, loading, error, callback] = useLazyJsonFetch();
-  const submitSearch = (data) => {
-    console.log("data submit", data);
-    callback(
-      "https://netology-trainbooking.netoservices.ru/routes",
-      new URLSearchParams({
-        ...data,
-      })
-    );
+  const navigate = useNavigate();
+  // const [data, loading, error, callback] = useLazyJsonFetch();
+  const submitSearch = (model) => {
+    console.log("model submit", model);
+    setSearchParams(model);
+    // callback(
+    //   "https://students.netoservices.ru/fe-diplom/routes",
+    //   new URLSearchParams({
+    //     ...model,
+    //   })
+    // );
+
+    // .then((result) => {
+    //   console.log("SEARCHresult", result);
+    //   // setResult(result);
+    // });
   };
+  // const router=useRouter()
+  const classClass = classNames({
+    "self-end": step !== 0,
+  });
+  const mainClass = classNames({
+    " flex   px-[24px] pb-[32px]": true,
+    "flex-col gap-[50px]": step === 0,
+    // "flex-wrap": step !== 0,
+  });
+  // console.log("searchFirstView", searchFirstView);
   // const [dateFrom, setDateFrom] = useState(new Date());
   return (
     // {data&& !loading ? <div>{data.status}</div>:null}
     // {error ? <dv>{error}</dv>:null}
-    <>
-      {searchFirstView ? (
-        <form
-          onSubmit={handleSubmit(submitSearch)}
-          className="  bg-black/80 flex flex-col gap-[50px] px-[24px] pt-[79px] pb-[52px]"
-        >
+    <div className={classClass}>
+      {/* {!data ? ( */}
+      <form
+        onSubmit={handleSubmit(submitSearch)}
+        className="bg-black/70 flex gap-0 flex-col px-[24px] pt-[79px] pb-[52px]"
+      >
+        <div className={mainClass}>
           <div className="flex flex-col">
             <h2 className="text-white text-30">Направление</h2>
             <div className="flex justify-between">
@@ -40,14 +61,14 @@ export default function SearchMain() {
                 placeholder="Откуда"
                 required
                 name="from_сity_id"
-                url="https://netology-trainbooking.netoservices.ru/routes/cities?name="
+                url="https://students.netoservices.ru/fe-diplom/routes/cities?name="
               />
               <InputDropdown
                 control={control}
                 placeholder="Куда"
                 required
                 name="to_city_id"
-                url="https://netology-trainbooking.netoservices.ru/routes/cities?name="
+                url="https://students.netoservices.ru/fe-diplom/routes/cities?name="
               />
               {/* <Select name='cityto' placeholder='Куда'/> */}
             </div>
@@ -61,18 +82,27 @@ export default function SearchMain() {
               {/* <Input name='dateto' placeholder='ДД/ММ/ГГ'/> */}
             </div>
           </div>
-          <Button
-            className="w-[286px] self-end text-24 mt-[20px] mr-[35px]"
-            label="найти билеты"
-            // onClick={submitSearch}
-            //при нажатии на книпку делать перевод на страницу и менять конфигурацию поисковика
-            type="submit"
-            color="orange"
-          />
+        </div>
+        <Button
+          className="w-[286px] self-end text-24 mt-[20px] mr-[60px]"
+          label="найти билеты"
+          onClick={() => {
+            navigate("/choose-train");
+            step === 0 ? setStep(1) : setStep(0);
+            // if (data) {
+            //   // router.push("/choose-train");
+            // }
+          }}
+          //TODO: при нажатии на книпку делать перевод на страницу и менять конфигурацию поисковика
+          type="submit"
+          color="orange"
+        />
+      </form>
+      {/* ) : (
+        <form>
+          <div>RECM</div>
         </form>
-      ) : (
-        <form></form>
-      )}
-    </>
+      )} */}
+    </div>
   );
 }
