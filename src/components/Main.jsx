@@ -1,30 +1,75 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import HeaderMenu from "./HeaderMenu";
-import AboutUsPage from "./SubMain/AboutUsPage";
-import ContactPage from "./SubMain/ContactPage";
-import Footer from "./SubMain/Footer";
-import HowItWorksPage from "./SubMain/HowItWorksPage";
-import ReviewsPage from "./SubMain/ReviewsPage";
+
 import SearchMain from "./SubMain/SearchMain";
+import classNames from "classnames";
+import SearchProgressBar from "./SubMain/SearchProgressBar";
+import SearchResultsTrain from "./SearchResults/SearchResultstrain";
+import { useLazyJsonFetch } from "../utils";
+import Loading from "./UI/Loading";
+import { Navigate, useLocation, useMatch } from "react-router";
 
 export default function Main() {
+  const [stepSearch, setStepSearch] = useState(0);
+  const [searchResults, setSearchResults] = useState({});
+  const mainClass = classNames({
+    "h-[993px] flex flex-col justify-between  bg-cover border-b-8 border-orange": true,
+    "bg-[url('img/search.png')]": stepSearch === 0,
+    "bg-[url('img/search2.png')]": stepSearch !== 0,
+  });
+  //Вынести сюда логику запросов и хранение результатов
+  // Компонент фильтра будет дополнять обьект параметров для запроса
+  const [searchParams, setSearchParams] = useState({});
+  const [data, loading, error, callback] = useLazyJsonFetch();
+
+  useEffect(() => {
+    callback(
+      "https://students.netoservices.ru/fe-diplom/routes",
+      new URLSearchParams({
+        ...searchParams,
+      })
+    );
+    if (data) {
+      console.log("DATA DATA", data);
+      setSearchResults(data);
+    }
+  }, [searchParams]);
+  const containerClass = classNames({
+    // flex: true,
+    " flex justify-center p-l-[50px] gap-[120px]": stepSearch === 0,
+    "flex flex-col justify-end justifyself-end": stepSearch !== 0,
+  });
+  const { pathname } = useLocation();
+  console.log("PATH", pathname);
   return (
     <div>
-      <div className="h-[993px] flex flex-col justify-between bg-[url('img/search.png')] bg-cover border-b-8 border-orange">
-        <HeaderMenu />
-        <div className=" flex justify-center p-l-[50px] gap-[120px]">
-          <div className="flex flex-col ">
-            <h1 className=" mt-[162px] text-white text-72 font-thin">Вся жизнь -</h1>
-            <h1 className="text-white text-72 font-bold">путешествие!</h1>
-          </div>
-          <SearchMain />
+      <div className={mainClass}>
+        <HeaderMenu setStep={setStepSearch} />
+        <div className={containerClass} id="container">
+          {stepSearch === 0 ? (
+            <div className="flex flex-col ">
+              <h1 className=" mt-[162px] text-white text-72 font-thin">Вся жизнь -</h1>
+              <h1 className="text-white text-72 font-bold">путешествие!</h1>
+            </div>
+          ) : (
+            <></>
+          )}
+          <SearchMain
+            step={stepSearch}
+            setStep={setStepSearch}
+            setSearchParams={setSearchParams}
+            paramSearch={searchParams}
+          />
         </div>
       </div>
-      <AboutUsPage />
+      {stepSearch !== 0 ? <SearchProgressBar searchStep={stepSearch} /> : <></>}
+      {data && pathname === "/choose-train" ? <SearchResultsTrain data={searchResults.items} /> : <></>}
+      {loading ? <Loading /> : <></>}
+      {/* <AboutUsPage />
       <HowItWorksPage />
       <ReviewsPage />
-      <ContactPage />
-      <Footer />
+      <ContactPage /> */}
+      {/* <Footer /> */}
     </div>
   );
 }
