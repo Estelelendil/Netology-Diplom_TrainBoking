@@ -14,7 +14,7 @@ export default function InputDropdown({ placeholder, url, required, name, text, 
   const [openDrop, setOpenDrop] = useState(false);
   const { field } = useController({ name, control, rules: { required } });
   const [data, loading, error] = useJsonFetch(cityName && url ? `${url}${cityName}` : null);
-  console.log(data, loading, error);
+  console.log("data loading err", data, loading, error);
   // const [city, setCity] = useState();
   // console.log("city selected", city);
   return (

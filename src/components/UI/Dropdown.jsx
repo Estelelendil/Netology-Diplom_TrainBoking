@@ -3,7 +3,7 @@ import React from "react";
 export default function Dropdown({ options, onSelect, open, close }) {
   console.log("DROPDOWN DATA", options);
   return (
-    <div className="flex flex-col bg-white absolute top-20 left-0 rounded">
+    <div className="flex flex-col bg-white absolute top-20 left-0 rounded z-50">
       {open
         ? options.map((option) => (
             <div
