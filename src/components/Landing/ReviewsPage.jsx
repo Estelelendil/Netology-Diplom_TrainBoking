@@ -1,6 +1,6 @@
 import React from "react";
-import Progress from "../Progress";
-import ReviewItem from "./ReviewItem";
+import ReviewItem from "./Items/ReviewItem";
+import Progress from "./Items/Progress";
 
 export default function ReviewsPage() {
   return (

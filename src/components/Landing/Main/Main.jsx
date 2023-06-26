@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import HeaderMenu from "./HeaderMenu";
 
-import SearchMain from "./SubMain/SearchMain";
+import SearchMain from "../../SubMain/SearchMain";
 import classNames from "classnames";
-import SearchProgressBar from "./SubMain/SearchProgressBar";
-import SearchResultsTrain from "./SearchResults/SearchResultstrain";
-import { useLazyJsonFetch } from "../utils";
-import Loading from "./UI/Loading";
+import SearchProgressBar from "../Items/SearchProgressBar";
+import SearchResultsTrain from "../../SearchResults/SearchResultstrain";
+import { useLazyJsonFetch } from "../../../utils";
+import Loading from "../../UI/Loading";
 import { Navigate, useLocation, useMatch } from "react-router";
+import Filters from "../../SearchResults/Filters";
 
 export default function Main() {
   const [stepSearch, setStepSearch] = useState(0);
@@ -63,7 +64,14 @@ export default function Main() {
         </div>
       </div>
       {stepSearch !== 0 ? <SearchProgressBar searchStep={stepSearch} /> : <></>}
-      {data && pathname === "/choose-train" ? <SearchResultsTrain data={searchResults.items} /> : <></>}
+      {data && pathname === "/choose-train" ? (
+        <div className="flex justify-center gap-[86px] px-[259px] mt-9">
+          <Filters setParams={setSearchParams} params={searchParams} />
+          <SearchResultsTrain data={searchResults.items} />
+        </div>
+      ) : (
+        <></>
+      )}
       {loading ? <Loading /> : <></>}
       {/* <AboutUsPage />
       <HowItWorksPage />

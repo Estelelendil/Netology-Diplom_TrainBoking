@@ -1,13 +1,13 @@
 import "./App.css";
 import { Route, Routes } from "react-router";
 // import Main from './components/Main';
-import HowItWorksPage from "./components/SubMain/HowItWorksPage";
-import ReviewsPage from "./components/SubMain/ReviewsPage";
-import ContactPage from "./components/SubMain/ContactPage";
-import Main from "./components/Main";
-import Footer from "./components/SubMain/Footer";
-import AboutUsPage from "./components/SubMain/AboutUsPage";
+import Main from "./components/Landing/Main/Main";
+import AboutUsPage from "./components/Landing/AboutUsPage";
+import HowItWorksPage from "./components/Landing/HowItWorksPage";
+import ReviewsPage from "./components/Landing/ReviewsPage";
+import ContactPage from "./components/Landing/ContactPage";
 import SearchResultsTrain from "./components/SearchResults/SearchResultstrain";
+import Footer from "./components/SubMain/Footer";
 
 function App() {
   return (
