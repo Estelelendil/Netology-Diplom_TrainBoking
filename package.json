@@ -10,6 +10,7 @@
     "date-fns": "^2.30.0",
     "eslint": "^8.42.0",
     "eslint-config-react-app": "^7.0.1",
+    "moment": "^2.29.4",
     "react": "^18.2.0",
     "react-calendar": "^4.2.1",
     "react-day-picker": "^8.7.1",
@@ -47,7 +48,7 @@
       "react-app/jest"
     ],
     "rules": {
-      "no-debugger":"warn",
+      "no-debugger": "warn",
       "semi": [
         "error",
         "always"
