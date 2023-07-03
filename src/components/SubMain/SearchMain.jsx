@@ -1,3 +1,4 @@
+/* eslint-disable quotes */
 // import { useState } from "react";
 import React from "react";
 import { useForm } from "react-hook-form";
@@ -34,10 +35,20 @@ export default function SearchMain({ setStep, step, setSearchParams, searchParam
     "self-end": step !== 0,
   });
   const mainClass = classNames({
-    " flex   px-[24px] pb-[32px]": true,
+    " flex   px-[24px] pb-[32px] gap-[40px]": true,
     "flex-col gap-[50px]": step === 0,
     // "flex-wrap": step !== 0,
   });
+  const changeInputs = () => {
+    const fromCityId = document.querySelector('input[name="from_сity_id"]');
+    const toCityId = document.querySelector('input[name="to_city_id"]');
+    const fromValue = fromCityId.value;
+    fromCityId.value = toCityId.value;
+    toCityId.value = fromValue;
+
+    console.log(fromCityId, toCityId);
+    // fromCityId.value=toCityId
+  };
   // console.log("searchFirstView", searchFirstView);
   // const [dateFrom, setDateFrom] = useState(new Date());
   return (
@@ -52,7 +63,7 @@ export default function SearchMain({ setStep, step, setSearchParams, searchParam
         <div className={mainClass}>
           <div className="flex flex-col">
             <h2 className="text-white text-30">Направление</h2>
-            <div className="flex justify-between">
+            <div className="flex justify-between items-center gap-[8px]">
               {/* <Input name='citySearch' placeholder='Откуда'setValue={setCitySearch} /> */}
               {/* {loading ? <Loading/>:null} */}
               {/* {data?<Select name='cityfrom'  options={data} setValue={setSelectionCty} placeholder='Откуда'/>:null} */}
@@ -63,6 +74,10 @@ export default function SearchMain({ setStep, step, setSearchParams, searchParam
                 name="from_сity_id"
                 url="https://students.netoservices.ru/fe-diplom/routes/cities?name="
               />
+              <div
+                onClick={changeInputs}
+                className="bg-[url('img/change.png')] w-[24px] h-[24px] bg-no-repeat bg-center"
+              ></div>
               <InputDropdown
                 control={control}
                 placeholder="Куда"
@@ -75,7 +90,7 @@ export default function SearchMain({ setStep, step, setSearchParams, searchParam
           </div>
           <div className="flex flex-col">
             <h2 className="text-white text-30">Дата</h2>
-            <div className="flex justify-between">
+            <div className="flex justify-between w-full gap-[40px]">
               {/* <Calendar onChange={setDateFrom} value={dateFrom} /> */}
               <InputCalendar control={control} required name="date_start" placeholder="ДД/ММ/ГГ" />
               <InputCalendar control={control} required name="date_end" placeholder="ДД/ММ/ГГ" />

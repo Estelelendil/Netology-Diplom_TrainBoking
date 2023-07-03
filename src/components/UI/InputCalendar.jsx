@@ -12,7 +12,7 @@ function getFormattedDate(date) {
 
 export default function InputCalendar({ placeholder, required, name, text, control }) {
   const inputClassName = classNames({
-    "p-15 border-[1px] border-[#d9d9d9] rounded-[5px]  bg-white": true,
+    "p-15 border-[1px] border-[#d9d9d9] rounded-[5px]  bg-white ": true,
   });
   // const [value, setValue] = useState();
   const [openCalendar, setOpenCalendar] = useState(false);
@@ -20,8 +20,8 @@ export default function InputCalendar({ placeholder, required, name, text, contr
   // const [data, loading, error] = useJsonFetch((value && url) ?`${url}${value}`:null, {});
   const [date, setDate] = useState(getFormattedDate(field.value));
   return (
-    <div className="flex flex-col gap-[17px] w-[325px] relative">
-      <p className="w-[400px] text-white text-24">{text}</p>
+    <div className="flex flex-col gap-[17px] w-full relative">
+      <p className=" text-white text-24">{text}</p>
       <OutsideClick
         onOutsideClick={() => {
           setOpenCalendar(false);

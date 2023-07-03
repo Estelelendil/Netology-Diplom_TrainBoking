@@ -8,7 +8,7 @@ import { useController } from "react-hook-form";
 
 export default function InputDropdown({ placeholder, url, required, name, text, control }) {
   const inputClassName = classNames({
-    "p-15 border-[1px] border-[#d9d9d9] rounded-[5px]  bg-white": true,
+    "p-15 border-[1px] border-[#d9d9d9] rounded-[5px]  bg-white w-[325px]": true,
   });
   const [cityName, setCityName] = useState();
   const [openDrop, setOpenDrop] = useState(false);
@@ -18,8 +18,8 @@ export default function InputDropdown({ placeholder, url, required, name, text, 
   // const [city, setCity] = useState();
   // console.log("city selected", city);
   return (
-    <div className=" flex flex-col gap-[17px] w-[325px] relative">
-      <p className="w-[400px] text-white text-24">{text}</p>
+    <div className=" flex flex-col gap-[17px] relative">
+      <p className=" text-white text-24">{text}</p>
       <OutsideClick
         onOutsideClick={() => {
           setOpenDrop(false);
