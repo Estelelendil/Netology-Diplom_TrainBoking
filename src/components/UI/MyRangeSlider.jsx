@@ -34,7 +34,7 @@ export default function MyRangeSlider({ name, control, defaultValue, required, p
         }}
         placeholder={placeholder}
       ></input>
-      <div className="mt-3 w-[300px] px-5 flex flex-col ">
+      <div className="mt-3 w-[300px] px-2 flex flex-col gap-1">
         <div className="flex justify-between text-white">
           <p>от</p>
           <p>до</p>

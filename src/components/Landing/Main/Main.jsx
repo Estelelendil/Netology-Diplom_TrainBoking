@@ -42,6 +42,7 @@ export default function Main() {
   });
   const { pathname } = useLocation();
   console.log("PATH", pathname);
+  //TODO сделать переход через вложенные роуты
   return (
     <div>
       <div className={mainClass}>

@@ -3,8 +3,9 @@ import InputCalendar from "../UI/InputCalendar";
 import { useForm } from "react-hook-form";
 import ToggleSwitch from "../UI/ToggleSwitch";
 import MyRangeSlider from "../UI/MyRangeSlider";
+import classNames from "classnames";
 
-export default function Filters({ setParams, params }) {
+export default function Filters({ setParams, params, pass }) {
   const { control, handleSubmit } = useForm({ mode: "onChange" });
   const submitSearch = (data) => {
     console.log("submitSearch data", data);
@@ -15,9 +16,13 @@ export default function Filters({ setParams, params }) {
     console.log("submitSearch newData", newData);
     setParams({ ...params, ...newData });
   };
-
+  const mainClass = classNames({
+    "w-[360px]  bg-[#3E3C41] mt-9 px-[20px] pt-[10px]": true,
+    "h-[890px]": !pass,
+    "h-[1500x]": pass,
+  });
   return (
-    <div className="w-[360px] h-[1012px] bg-[#3E3C41] mt-9 px-[20px] pt-[10px]">
+    <div className={mainClass}>
       <form onSubmit={handleSubmit(submitSearch)}>
         <div className="flex flex-col justify-start items-center border-b-1 border-[#E5E5E5] pb-[20px]">
           {/* <Calendar onChange={setDateFrom} value={dateFrom} /> */}
@@ -69,13 +74,27 @@ export default function Filters({ setParams, params }) {
           <h2 className="text-white text-30 self-start pl-[10px] pt-[10px]">Стоимость</h2>
           <MyRangeSlider control={control} name="price" min={100} max={17000} />
         </div>
-        <div className="flex items-center justify-between">
-          <div className="flex items-center justify-start">
-            <div className="bg-[url('img/Subtract.png')] w-[30px] h-[25px] bg-no-repeat bg-contain"></div>
-            <h2 className="text-white text-30 font-bold self-start pl-[10px] pt-[10px]">Туда</h2>
+        <div className=" flex flex-col">
+          <div className="flex items-center py-3 justify-between border-b-1 border-[#E5E5E5] pr-5">
+            <div className="flex items-center justify-start py-3">
+              <div className="bg-[url('img/Subtract.png')] w-[30px] h-[25px] bg-no-repeat bg-contain"></div>
+              <h2 className="text-white text-30 font-bold self-start pl-[10px] ">Туда</h2>
+            </div>
+            <button className="border-1 border-white rounded text-white h-[20px] w-[20px] text-center align-middle leading-4">
+              +
+            </button>
           </div>
-          <button className="border-1 border-white rounded text-white h-[20px] w-[20px] text-center">+</button>
+          <div className="flex items-center justify-between py-3 pr-5">
+            <div className="flex items-center justify-start py-3">
+              <div className="bg-[url('img/Subtract.png')] w-[30px] h-[25px] bg-no-repeat bg-contain rotate-180"></div>
+              <h2 className="text-white text-30 font-bold self-start pl-[10px] ">Обратно</h2>
+            </div>
+            <button className="border-1 border-white rounded text-white h-[20px] w-[20px] text-center align-middle leading-4">
+              +
+            </button>
+          </div>
         </div>
+
         <button>Кусь</button>
       </form>
     </div>
