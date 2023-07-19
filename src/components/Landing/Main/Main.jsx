@@ -7,7 +7,7 @@ import SearchProgressBar from "../Items/SearchProgressBar";
 import SearchResultsTrain from "../../SearchResults/SearchResultstrain";
 import { useLazyJsonFetch } from "../../../utils";
 import Loading from "../../UI/Loading";
-import { Navigate, useLocation, useMatch } from "react-router";
+import { useLocation } from "react-router";
 import Filters from "../../SearchResults/Filters";
 
 export default function Main() {

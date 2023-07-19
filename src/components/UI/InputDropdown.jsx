@@ -46,7 +46,7 @@ export default function InputDropdown({ placeholder, url, required, name, text, 
             options={data}
           />
         ) : null}
-        {loading ? <Loading /> : null}
+        {/* {loading ? <Loading /> : null} */}
       </OutsideClick>
     </div>
   );

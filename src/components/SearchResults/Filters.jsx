@@ -2,26 +2,32 @@ import React from "react";
 import InputCalendar from "../UI/InputCalendar";
 import { useForm } from "react-hook-form";
 import ToggleSwitch from "../UI/ToggleSwitch";
+import MyRangeSlider from "../UI/MyRangeSlider";
 
 export default function Filters({ setParams, params }) {
   const { control, handleSubmit } = useForm({ mode: "onChange" });
   const submitSearch = (data) => {
-    console.log("submitSearch", data);
-    setParams({ ...params, ...data });
+    console.log("submitSearch data", data);
+    const newData = { ...data };
+    delete newData.price;
+    newData.price_from = data.price[0];
+    newData.price_to = data.price[1];
+    console.log("submitSearch newData", newData);
+    setParams({ ...params, ...newData });
   };
 
   return (
-    <div className="w-[360px] h-[1012px] bg-[#3E3C41] mt-9">
+    <div className="w-[360px] h-[1012px] bg-[#3E3C41] mt-9 px-[20px] pt-[10px]">
       <form onSubmit={handleSubmit(submitSearch)}>
         <div className="flex flex-col justify-start items-center border-b-1 border-[#E5E5E5] pb-[20px]">
           {/* <Calendar onChange={setDateFrom} value={dateFrom} /> */}
-          <h2 className="text-white text-30 self-start pl-[20px]">Дата поездки</h2>
+          <h2 className="text-white text-30 self-start pl-[10px] pt-[10px]">Дата поездки</h2>
           <InputCalendar control={control} required name="date_start" placeholder="ДД/ММ/ГГ" />
-          <h2 className="text-white text-30 self-start pl-[20px]">Дата возвращения</h2>
+          <h2 className="text-white text-30 self-start pl-[10px] pt-[10px]">Дата возвращения</h2>
           <InputCalendar control={control} required name="date_end" placeholder="ДД/ММ/ГГ" />
           {/* <Input name='dateto' placeholder='ДД/ММ/ГГ'/> */}
         </div>
-        <div className="flex flex-col gap-[164x]">
+        <div className="flex flex-col gap-[164x] border-b-1 border-[#E5E5E5] py-3">
           <ToggleSwitch name="have_second_class" control={control} defaultValue={false}>
             <div className="flex w-full justify-start gap-[34px] items-center ">
               <div className="bg-[url('img/secondClass.svg')] w-[17px] h-[17px] bg-no-repeat bg-contain"></div>
@@ -58,6 +64,17 @@ export default function Filters({ setParams, params }) {
               <p>Экспресс</p>
             </div>
           </ToggleSwitch>
+        </div>
+        <div className="py-3 flex flex-col text-white border-b-1 border-[#E5E5E5]">
+          <h2 className="text-white text-30 self-start pl-[10px] pt-[10px]">Стоимость</h2>
+          <MyRangeSlider control={control} name="price" min={100} max={17000} />
+        </div>
+        <div className="flex items-center justify-between">
+          <div className="flex items-center justify-start">
+            <div className="bg-[url('img/Subtract.png')] w-[30px] h-[25px] bg-no-repeat bg-contain"></div>
+            <h2 className="text-white text-30 font-bold self-start pl-[10px] pt-[10px]">Туда</h2>
+          </div>
+          <button className="border-1 border-white rounded text-white h-[20px] w-[20px] text-center">+</button>
         </div>
         <button>Кусь</button>
       </form>

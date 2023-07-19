@@ -7,6 +7,7 @@ import InputCalendar from "../UI/InputCalendar";
 import InputDropdown from "../UI/InputDropdown";
 import classNames from "classnames";
 import { useNavigate } from "react-router";
+// import MyRangeSlider from "../UI/MyRangeSlider";
 // import { useLazyJsonFetch } from "../../utils";
 
 export default function SearchMain({ setStep, step, setSearchParams, searchParams }) {
