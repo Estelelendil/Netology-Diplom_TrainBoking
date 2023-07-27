@@ -1,4 +1,5 @@
-import { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState, useCallback } from "react";
+import { useLocation } from "react-router";
 
 export default function useJsonFetch(url, searchParams) {
   const [data, setData] = useState(null);
@@ -45,11 +46,13 @@ export function useLazyJsonFetch() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const callback = useCallback((url, searchParams) => {
+  const callback = useCallback((url, searchParams, seatsid) => {
     console.log("searchParams", searchParams);
     if (url != null) {
       if (searchParams) {
-        const newUrl = url + "?" + new URLSearchParams(searchParams).toString();
+        const newUrl = seatsid
+          ? url + "/" + seatsid + "/seats?" + new URLSearchParams(searchParams).toString()
+          : url + "?" + new URLSearchParams(searchParams).toString();
         fetch(newUrl)
           .then((response) => {
             setLoading(false);
@@ -80,4 +83,10 @@ export function useLazyJsonFetch() {
   }, []);
 
   return [data, loading, error, callback];
+}
+
+export function useQuery() {
+  const { search } = useLocation();
+
+  return React.useMemo(() => new URLSearchParams(search), [search]);
 }
