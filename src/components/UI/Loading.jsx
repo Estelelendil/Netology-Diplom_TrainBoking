@@ -2,17 +2,22 @@ import React from "react";
 
 export default function Loading() {
   return (
-    <div>
+    <div className="w-full h-full flex items-center justify-center">
+      {/* <div className="bg-[url('img/animation.gif')] w-full h-[100px]"></div> */}
+      {/* <figure>
+        <img src="file:///home/estelelendil/LEXSA/Netology/Diplom/src/img/animation.gif" alt="ЧУЧУУУУХ" />
+      </figure>
+      <video preload="auto" loop autoplay src="img/animation.gif" alt="ЧУЧУУУУХ"></video> */}
       <svg
         xmlns="http://www.w3.org/2000/svg"
         //   xmlns:xlink="http://www.w3.org/1999/xlink"
         className="margin: auto; background: rgb(241, 242, 243) none repeat scroll 0% 0%; display: block; shape-rendering: auto;"
-        width="20"
-        height="20"
+        width="200"
+        height="200"
         viewBox="0 0 100 100"
         preserveAspectRatio="xMidYMid"
       >
-        <circle cx="50" cy="50" r="0" fill="none" stroke="#ff0034" strokeWidth="2">
+        <circle cx="50" cy="50" r="0" fill="none" stroke="#FFA800" strokeWidth="2">
           <animate
             attributeName="r"
             repeatCount="indefinite"
