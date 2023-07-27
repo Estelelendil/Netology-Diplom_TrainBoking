@@ -6,20 +6,28 @@ import AboutUsPage from "./components/Landing/AboutUsPage";
 import HowItWorksPage from "./components/Landing/HowItWorksPage";
 import ReviewsPage from "./components/Landing/ReviewsPage";
 import ContactPage from "./components/Landing/ContactPage";
-import SearchResultsTrain from "./components/SearchResults/SearchResultstrain";
 import Footer from "./components/SubMain/Footer";
+import HeaderMenu from "./components/Landing/Main/HeaderMenu";
+import ConnectedCoach from "./components/SearchResults/Coach/ConnectedCoach";
+import ConnectedTrain from "./components/SearchResults/Train/ConnectedTrain";
 
 function App() {
+  // let { from_сity_id } = useParams();
   return (
     <>
       <div>
-        <Main />
+        {/* <Main /> */}
         <Routes>
-          <Route path="/about-us" exact element={<AboutUsPage />} />
-          <Route path="/how-it-works" element={<HowItWorksPage />} />
-          <Route path="/reviews" element={<ReviewsPage />} />
-          <Route path="/contacts" element={<ContactPage />} />
-          <Route path="/choose-train" element={<SearchResultsTrain />} />
+          <Route path="/" element={<HeaderMenu />}>
+            <Route path="about-us" exact element={<AboutUsPage />} />
+            <Route path="how-it-works" element={<HowItWorksPage />} />
+            <Route path="reviews" element={<ReviewsPage />} />
+            <Route path="contacts" element={<ContactPage />} />
+            <Route path="search/" element={<Main />}>
+              <Route path="trains/*" element={<ConnectedTrain />} />
+              <Route path="seats/*" element={<ConnectedCoach />} />
+            </Route>
+          </Route>
         </Routes>
         <Footer />
       </div>
