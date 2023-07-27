@@ -18,7 +18,12 @@ export default function SearchMain({ setStep, step, setSearchParams, searchParam
   // const [data, loading, error, callback] = useLazyJsonFetch();
   const submitSearch = (model) => {
     console.log("model submit", model);
-    setSearchParams(model);
+    // setSearchParams(model);
+    // navigate(`/main/trains?from_сity_id=${model.from_сity_id}&to_сity_id=${model.to_сity_id}`);
+    navigate(
+      `/search/trains?from_city_id=${model.from_сity_id}&to_city_id=${model.to_city_id}&date_start=${model.date_start}&date_end=${model.date_end}`
+    );
+    step === 0 ? setStep(1) : setStep(0);
     // callback(
     //   "https://students.netoservices.ru/fe-diplom/routes",
     //   new URLSearchParams({
@@ -102,13 +107,11 @@ export default function SearchMain({ setStep, step, setSearchParams, searchParam
         <Button
           className="w-[286px] self-end text-24 mt-[20px] mr-[60px]"
           label="найти билеты"
-          onClick={() => {
-            navigate("/choose-train");
-            step === 0 ? setStep(1) : setStep(0);
-            // if (data) {
-            //   // router.push("/choose-train");
-            // }
-          }}
+          // onClick={() => {
+          //   // if (data) {
+          //   //   // router.push("/choose-train");
+          //   // }
+          // }}
           //TODO: при нажатии на книпку делать перевод на страницу и менять конфигурацию поисковика
           type="submit"
           color="orange"

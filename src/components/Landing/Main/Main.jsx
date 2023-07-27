@@ -1,52 +1,35 @@
 import React, { useEffect, useState } from "react";
-import HeaderMenu from "./HeaderMenu";
 
-import SearchMain from "../../SubMain/SearchMain";
-import classNames from "classnames";
-import SearchProgressBar from "../Items/SearchProgressBar";
 import SearchResultsTrain from "../../SearchResults/SearchResultstrain";
-import { useLazyJsonFetch } from "../../../utils";
+import { useLazyJsonFetch, useQuery } from "../../../utils";
 import Loading from "../../UI/Loading";
-import { useLocation } from "react-router";
+import { Outlet, useLocation } from "react-router";
 import Filters from "../../SearchResults/Filters";
 
 export default function Main() {
-  const [stepSearch, setStepSearch] = useState(0);
-  const [searchResults, setSearchResults] = useState({});
-  const mainClass = classNames({
-    "h-[993px] flex flex-col justify-between  bg-cover border-b-8 border-orange": true,
-    "bg-[url('img/search.png')]": stepSearch === 0,
-    "bg-[url('img/search2.png')]": stepSearch !== 0,
-  });
+  // const [stepSearch, setStepSearch] = useState(0);
+
+  // const mainClass = classNames({
+  //   "h-[993px] flex flex-col justify-between  bg-cover border-b-8 border-orange": true,
+  //   "bg-[url('img/search.png')]": stepSearch === 0,
+  //   "bg-[url('img/search2.png')]": stepSearch !== 0,
+  // });
   //Вынести сюда логику запросов и хранение результатов
   // Компонент фильтра будет дополнять обьект параметров для запроса
-  const [searchParams, setSearchParams] = useState({});
-  const [data, loading, error, callback] = useLazyJsonFetch();
+  // const [searchParams, setSearchParams] = useState({});
 
-  useEffect(() => {
-    callback(
-      "https://students.netoservices.ru/fe-diplom/routes",
-      new URLSearchParams({
-        ...searchParams,
-      })
-    );
-    if (data) {
-      console.log("DATA DATA", data);
-      setSearchResults(data);
-    }
-  }, [searchParams]);
-  const containerClass = classNames({
-    // flex: true,
-    " flex justify-center p-l-[50px] gap-[120px]": stepSearch === 0,
-    "flex flex-col justify-end justifyself-end": stepSearch !== 0,
-  });
+  // const containerClass = classNames({
+  //   // flex: true,
+  //   " flex justify-center p-l-[50px] gap-[120px]": stepSearch === 0,
+  //   "flex flex-col justify-end justifyself-end": stepSearch !== 0,
+  // });
   const { pathname } = useLocation();
   console.log("PATH", pathname);
-  //TODO сделать переход через вложенные роуты
+
+  //TODO перенести полностью логику с запросом и фильтром в компонент Train
   return (
     <div>
-      <div className={mainClass}>
-        <HeaderMenu setStep={setStepSearch} />
+      {/* <div className={mainClass}>
         <div className={containerClass} id="container">
           {stepSearch === 0 ? (
             <div className="flex flex-col ">
@@ -63,22 +46,17 @@ export default function Main() {
             paramSearch={searchParams}
           />
         </div>
-      </div>
-      {stepSearch !== 0 ? <SearchProgressBar searchStep={stepSearch} /> : <></>}
-      {data && pathname === "/choose-train" ? (
-        <div className="flex justify-center gap-[86px] px-[259px] mt-9">
-          <Filters setParams={setSearchParams} params={searchParams} />
-          <SearchResultsTrain data={searchResults.items} />
-        </div>
-      ) : (
+      </div> */}
+      <Outlet />
+      {/* {stepSearch !== 0 ? <SearchProgressBar searchStep={stepSearch} /> : <></>} */}
+      {/* <div className="flex justify-center gap-[86px] px-[259px] mt-9">
+        <Filters setParams={setSearchParams} params={searchParams} />
+        {data ? <SearchResultsTrain data={searchResults.items} /> : <></>}
+      </div> */}
+      {/* ) : (
         <></>
-      )}
-      {loading ? <Loading /> : <></>}
-      {/* <AboutUsPage />
-      <HowItWorksPage />
-      <ReviewsPage />
-      <ContactPage /> */}
-      {/* <Footer /> */}
+      )} */}
+      {/* {loading ? <Loading /> : <></>} */}
     </div>
   );
 }

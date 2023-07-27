@@ -6,13 +6,33 @@ import MyRangeSlider from "../UI/MyRangeSlider";
 import classNames from "classnames";
 
 export default function Filters({ setParams, params, pass }) {
-  const { control, handleSubmit } = useForm({ mode: "onChange" });
+  const { control, handleSubmit } = useForm({
+    mode: "onChange",
+    // defaultValues: {
+    //   have_third_class: false,
+    //   have_second_class: false,
+    //   have_first_class: false,
+    //   have_wifi: false,
+    //   have_express: false,
+    //   price_from: 0,
+    //   price_to: 200000,
+    //   date_start: null,
+    //   date_end: null,
+    // },
+  });
   const submitSearch = (data) => {
     console.log("submitSearch data", data);
     const newData = { ...data };
+    for (const keys in newData) {
+      if (newData[keys] === undefined) {
+        delete newData[keys];
+      }
+    }
     delete newData.price;
-    newData.price_from = data.price[0];
-    newData.price_to = data.price[1];
+    if (data.price) {
+      newData.price_from = data.price[0];
+      newData.price_to = data.price[1];
+    }
     console.log("submitSearch newData", newData);
     setParams({ ...params, ...newData });
   };
