@@ -16,8 +16,8 @@ export default function CoachMap({ seats, number, type }) {
   return (
     <div className="p-8">
       <p>{type}</p>
-      <p>{number}</p>
       <div className={typeClass}>
+        <div className="w-[40px] h-[30px] bg-black text-white absolute text-center left-[48px] top-[0]">{number}</div>
         <div className="absolute top-[30px] left-[151px] bg-gray/25 w-[855px] h-[140px]">
           {type === "first" && <SeatsFirst seats={seats} />}
           {type === "second" && <SeatsSecond seats={seats} />}

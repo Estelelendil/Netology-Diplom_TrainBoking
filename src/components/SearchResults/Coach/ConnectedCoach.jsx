@@ -7,6 +7,7 @@ import SeatFilter from "../Train/Components/Ticket/SeatFilter";
 import classNames from "classnames";
 import CoachCard from "./CoachCard";
 import CoachMap from "./CoachMap";
+// import Button from "../UI/Button";
 
 export default function ConnectedCoach({ item, setVersion }) {
   const [searchParams, setSearchParams] = useState({});
@@ -120,6 +121,8 @@ export default function ConnectedCoach({ item, setVersion }) {
         </div>
       )}
       {loading && <Loading />}
+      {/* <div>RECM</div>
+      <Button label="Далее" color="orange"></Button> */}
     </div>
   );
 }
