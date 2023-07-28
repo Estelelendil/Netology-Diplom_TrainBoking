@@ -8,11 +8,17 @@ export default function SeatsFirst({ seats }) {
           return (
             <div className="flex mr-[4px]">
               <div className="w-[34px] h-[70px] bg-white/60"></div>
-              <div className="w-[34px] h-[70px] bg-gray/50 border-1 border-red text-center">{item.index}</div>
+              <div className="w-[34px] h-[70px] bg-white  border-1 border-gray rounded-[3px] font-semibold text-center">
+                {item.index}
+              </div>
             </div>
           );
         } else {
-          return <div className="w-[34px] h-[70px] bg-gray/50 border-1 border-red text-center">{item.index}</div>;
+          return (
+            <div className="w-[34px] h-[70px] bg-white  border-1 border-gray rounded-[3px] font-semibold text-center">
+              {item.index}
+            </div>
+          );
         }
       })}
     </div>
