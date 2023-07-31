@@ -3,19 +3,19 @@ import React from "react";
 
 export default function SeatsThird({ seats, choosen, seatChoose }) {
   const seatClass = classNames({
-    "w-[34px] h-[35px] bg-white border-1 border-gray rounded-[3px] font-semibold text-center ": true,
+    "w-[34px] h-[35px] bg-white border-1 border-gray rounded-[3px] font-semibold text-center hover:cursor-pointer": true,
   });
   const seatChoosenClass = classNames({
-    "w-[34px] h-[35px] bg-[#FFD98F] border-2 border-orange text-orange rounded-[3px] font-semibold text-center ": true,
+    "w-[34px] h-[35px] bg-[#FFD98F] border-2 border-orange text-orange rounded-[3px] font-semibold text-center hover:cursor-pointer": true,
   });
   const seatSideClass = classNames({
-    "w-[51px] h-[30px] bg-white border-1 border-gray rounded-[3px] font-semibold text-center": true,
+    "w-[51px] h-[30px] bg-white border-1 border-gray rounded-[3px] font-semibold text-center hover:cursor-pointer": true,
   });
   const seatSideChoosenClass = classNames({
-    "w-[51px] h-[30px] bg-[#FFD98F] border-2 border-orange text-orange rounded-[3px] font-semibold text-center": true,
+    "w-[51px] h-[30px] bg-[#FFD98F] border-2 border-orange text-orange rounded-[3px] font-semibold text-center hover:cursor-pointer": true,
   });
   return (
-    <div className=" h-[75px]  flex flex-wrap   mt-[5px] ml-[5px] ">
+    <div className="h-[75px]  flex flex-wrap   mt-[5px] ml-[5px]">
       {seats.map((item, index) => {
         if (index % 2 === 0 && index < 32) {
           return (

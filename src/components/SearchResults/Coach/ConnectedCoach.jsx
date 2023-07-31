@@ -58,7 +58,11 @@ export default function ConnectedCoach({ item, setVersion }) {
     setCoach((prev) => {
       console.log("seatChoose", prev);
       const newObj = { ...prev };
-      newObj.chooseSeat = number;
+      if (prev.chooseSeat === number) {
+        delete newObj.chooseSeat;
+      } else {
+        newObj.chooseSeat = number;
+      }
       return newObj;
     });
   };

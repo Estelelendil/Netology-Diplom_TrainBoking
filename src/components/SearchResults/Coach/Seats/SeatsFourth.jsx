@@ -3,10 +3,10 @@ import React from "react";
 
 export default function SeatsFourth({ seats, choosen, seatChoose }) {
   const seatClass = classNames({
-    "w-[32px] h-[21px] bg-white border-1 border-gray font-semibold rounded-[3px] text-center ": true,
+    "w-[32px] h-[21px] bg-white border-1 border-gray font-semibold rounded-[3px] text-center hover:cursor-pointer": true,
   });
   const seatChoosenClass = classNames({
-    "w-[32px] h-[21px] bg-[#FFD98F] border-2 border-orange text-orange rounded-[3px] font-semibold text-center": true,
+    "w-[32px] h-[21px] bg-[#FFD98F] border-2 border-orange text-orange rounded-[3px] font-semibold text-center hover:cursor-pointer": true,
   });
   return (
     <div className="flex flex-wrap gap-[20px] mt-[10px] ml-[16px]">
