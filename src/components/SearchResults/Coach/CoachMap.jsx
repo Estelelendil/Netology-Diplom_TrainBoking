@@ -5,7 +5,7 @@ import SeatsSecond from "./Seats/SeatsSecond";
 import SeatsThird from "./Seats/SeatsThird";
 import SeatsFourth from "./Seats/SeatsFourth";
 
-export default function CoachMap({ seats, number, type }) {
+export default function CoachMap({ seats, number, type, choosen, seatChoose }) {
   const typeClass = classNames({
     "  bg-no-repeat w-full h-[250px] bg-contain relative": true,
     "bg-[url('img/coachMap_second.png')]": type === "second",
@@ -15,14 +15,13 @@ export default function CoachMap({ seats, number, type }) {
   });
   return (
     <div className="p-8">
-      <p>{type}</p>
       <div className={typeClass}>
         <div className="w-[40px] h-[30px] bg-black text-white absolute text-center left-[48px] top-[0]">{number}</div>
         <div className="absolute top-[30px] left-[151px] bg-gray/25 w-[855px] h-[140px]">
-          {type === "first" && <SeatsFirst seats={seats} />}
-          {type === "second" && <SeatsSecond seats={seats} />}
-          {type === "third" && <SeatsThird seats={seats} />}
-          {type === "fourth" && <SeatsFourth seats={seats} />}
+          {type === "first" && <SeatsFirst seats={seats} seatChoose={seatChoose} choosen={choosen} />}
+          {type === "second" && <SeatsSecond seats={seats} seatChoose={seatChoose} choosen={choosen} />}
+          {type === "third" && <SeatsThird seats={seats} seatChoose={seatChoose} choosen={choosen} />}
+          {type === "fourth" && <SeatsFourth seats={seats} seatChoose={seatChoose} choosen={choosen} />}
         </div>
       </div>
     </div>

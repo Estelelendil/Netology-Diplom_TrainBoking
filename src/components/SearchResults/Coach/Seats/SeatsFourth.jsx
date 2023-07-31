@@ -1,6 +1,13 @@
+import classNames from "classnames";
 import React from "react";
 
-export default function SeatsFourth({ seats }) {
+export default function SeatsFourth({ seats, choosen, seatChoose }) {
+  const seatClass = classNames({
+    "w-[32px] h-[21px] bg-white border-1 border-gray font-semibold rounded-[3px] text-center ": true,
+  });
+  const seatChoosenClass = classNames({
+    "w-[32px] h-[21px] bg-[#FFD98F] border-2 border-orange text-orange rounded-[3px] font-semibold text-center": true,
+  });
   return (
     <div className="flex flex-wrap gap-[20px] mt-[10px] ml-[16px]">
       {
@@ -11,11 +18,23 @@ export default function SeatsFourth({ seats }) {
                 className={(item.index + 1) % 4 === 0 ? "flex flex-col gap-[3px]" : "flex flex-col gap-[3px] mb-[7px]"}
               >
                 {seats[index + 1] && (
-                  <div className="w-[32px] h-[21px] bg-white border-1 border-gray font-semibold rounded-[3px] text-center ">
+                  <div
+                    className={item.index + 1 === choosen ? seatChoosenClass : seatClass}
+                    onClick={() => {
+                      console.log(item.index === choosen);
+                      seatChoose(item.index + 1);
+                    }}
+                  >
                     {seats[index + 1].index}
                   </div>
                 )}
-                <div className="w-[32px] h-[21px] bg-white border-1 border-gray font-semibold rounded-[3px] text-center">
+                <div
+                  className={item.index === choosen ? seatChoosenClass : seatClass}
+                  onClick={() => {
+                    console.log(item.index === choosen);
+                    seatChoose(item.index);
+                  }}
+                >
                   {item.index}
                 </div>
               </div>
@@ -23,7 +42,13 @@ export default function SeatsFourth({ seats }) {
           } else if (item.index === 33) {
             return (
               <div className="flex flex-col justify-end">
-                <div className="w-[32px] h-[21px] bg-white border-1 border-gray font-semibold rounded-[3px] text-center">
+                <div
+                  className={item.index === choosen ? seatChoosenClass : seatClass}
+                  onClick={() => {
+                    console.log(item.index === choosen);
+                    seatChoose(item.index);
+                  }}
+                >
                   {item.index}
                 </div>
               </div>
@@ -31,11 +56,23 @@ export default function SeatsFourth({ seats }) {
           } else if (index >= 32 && index % 2 !== 0) {
             return (
               <div className={(item.index + 1) % 4 === 0 ? "flex flex-col gap-[3px]" : "flex flex-col gap-[3px]"}>
-                <div className="w-[32px] h-[21px] bg-white border-1 border-gray font-semibold rounded-[3px] text-center">
+                <div
+                  className={item.index === choosen ? seatChoosenClass : seatClass}
+                  onClick={() => {
+                    console.log(item.index === choosen);
+                    seatChoose(item.index);
+                  }}
+                >
                   {item.index}
                 </div>
                 {seats[index + 1] && (
-                  <div className="w-[32px] h-[21px] bg-white border-1 border-gray font-semibold rounded-[3px] text-center ">
+                  <div
+                    className={item.index + 1 === choosen ? seatChoosenClass : seatClass}
+                    onClick={() => {
+                      console.log(item.index === choosen);
+                      seatChoose(item.index + 1);
+                    }}
+                  >
                     {seats[index + 1].index}
                   </div>
                 )}

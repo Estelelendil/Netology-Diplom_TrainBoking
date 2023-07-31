@@ -54,6 +54,14 @@ export default function ConnectedCoach({ item, setVersion }) {
     { key: "have_second_class", name: "Купе" },
     { key: "have_first_class", name: "Люкс" },
   ];
+  const seatChoose = (number) => {
+    setCoach((prev) => {
+      console.log("seatChoose", prev);
+      const newObj = { ...prev };
+      newObj.chooseSeat = number;
+      return newObj;
+    });
+  };
   return (
     <div className="border-1 border-gray/30">
       <div className="flex flex-col w-[959px] gap-[20px]">
@@ -92,7 +100,7 @@ export default function ConnectedCoach({ item, setVersion }) {
                 return (
                   <button
                     className={coach.item && item.coach._id === coach.item.coach._id ? buttonCoach : buttonCoachChoosen}
-                    onClick={() => setCoach({ number: `0${index + 1}`, item })}
+                    onClick={() => setCoach({ number: `0${index + 1}`, item })} //номер поезда(усл) и вся инфа по поезду
                   >
                     {`0${index + 1}`}
                   </button>
@@ -113,7 +121,13 @@ export default function ConnectedCoach({ item, setVersion }) {
                 </div>
                 <CoachCard item={coach.item}></CoachCard>
               </div>
-              <CoachMap seats={coach.item.seats} number={coach.number} type={coach.item.coach.class_type}></CoachMap>
+              <CoachMap
+                seats={coach.item.seats}
+                number={coach.number}
+                type={coach.item.coach.class_type}
+                choosen={coach.chooseSeat}
+                seatChoose={seatChoose}
+              ></CoachMap>
             </div>
           ) : (
             <></>

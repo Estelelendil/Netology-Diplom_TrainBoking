@@ -83,9 +83,9 @@ export default function CoachCard({ item }) {
           </div>
         )}
       </div>
-      <div className="flex flex-col text-[#928F94] text-20">
+      <div className="flex flex-col text-[#928F94] text-20 gap-3">
         <p>Обслуживание ФПК</p>
-        <div className="flex gap-3">
+        <div className="flex gap-6">
           <div className={haveCond}></div>
           <div className={haveWifi}></div>
           <div className={haveLinels}> </div>
