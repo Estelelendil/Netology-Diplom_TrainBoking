@@ -18,7 +18,7 @@ export default function ConnectedCoach({ item, setVersion }) {
     "text-18 font-bold text-white": true,
   });
   // const query = useQuery();
-  console.log("ITEM", item);
+  // console.log("ITEM", item);
   // const timeArrivalFrom = moment(item.arrival.from.datetime);
   // const timeArrivalTo = moment(item.arrival.to.datetime);
   // const timeDiffArrival = timeArrivalTo.diff(timeArrivalFrom);
@@ -29,7 +29,7 @@ export default function ConnectedCoach({ item, setVersion }) {
   // const timeDiffdeparture = timedepartureTo.diff(timedepartureFrom);
   // const dataDiffdeparture = moment(timeDiffdeparture);
   // const id = query.get("id");
-  console.log("ConnectedCoach", id);
+  // console.log("ConnectedCoach", id);
   // eslint-disable-next-line no-unused-vars
   const [data, loading, error, callback] = useLazyJsonFetch();
   const [coach, setCoach] = useState();
@@ -58,11 +58,24 @@ export default function ConnectedCoach({ item, setVersion }) {
     setCoach((prev) => {
       console.log("seatChoose", prev);
       const newObj = { ...prev };
-      if (prev.chooseSeat === number) {
-        delete newObj.chooseSeat;
+      if (prev.chooseSeat) {
+        console.log("chooseSeat");
+        if (newObj.chooseSeat.includes(number)) {
+          console.log("includes", newObj.chooseSeat.includes(number));
+          newObj.chooseSeat = newObj.chooseSeat.filter((item) => item !== number);
+        } else if (prev.chooseSeat.length < 3) {
+          console.log("push");
+          newObj.chooseSeat.push(number);
+        }
       } else {
-        newObj.chooseSeat = number;
+        newObj.chooseSeat = [];
+        newObj.chooseSeat.push(number);
       }
+      // if (prev.chooseSeat === number) {
+      //   delete newObj.chooseSeat;
+      // } else {
+      //   newObj.chooseSeat = number;
+      // }
       return newObj;
     });
   };
@@ -97,7 +110,7 @@ export default function ConnectedCoach({ item, setVersion }) {
             <div className="flex gap-2 items-center">
               <p>Вагоны</p>
               {data.map((item, index) => {
-                console.log("coach data map", item);
+                // console.log("coach data map", item);
                 // if (index === 0) {
                 //   setCoach({ number: `0${index + 1}`, item });
                 // }

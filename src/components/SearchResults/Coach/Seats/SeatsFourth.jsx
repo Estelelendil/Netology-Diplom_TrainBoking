@@ -19,9 +19,8 @@ export default function SeatsFourth({ seats, choosen, seatChoose }) {
               >
                 {seats[index + 1] && (
                   <div
-                    className={item.index + 1 === choosen ? seatChoosenClass : seatClass}
+                    className={choosen && choosen.includes(item.index + 1) ? seatChoosenClass : seatClass}
                     onClick={() => {
-                      console.log(item.index === choosen);
                       seatChoose(item.index + 1);
                     }}
                   >
@@ -29,9 +28,8 @@ export default function SeatsFourth({ seats, choosen, seatChoose }) {
                   </div>
                 )}
                 <div
-                  className={item.index === choosen ? seatChoosenClass : seatClass}
+                  className={choosen && choosen.includes(item.index) ? seatChoosenClass : seatClass}
                   onClick={() => {
-                    console.log(item.index === choosen);
                     seatChoose(item.index);
                   }}
                 >
@@ -43,9 +41,8 @@ export default function SeatsFourth({ seats, choosen, seatChoose }) {
             return (
               <div className="flex flex-col justify-end">
                 <div
-                  className={item.index === choosen ? seatChoosenClass : seatClass}
+                  className={choosen && choosen.includes(item.index) ? seatChoosenClass : seatClass}
                   onClick={() => {
-                    console.log(item.index === choosen);
                     seatChoose(item.index);
                   }}
                 >
@@ -57,9 +54,8 @@ export default function SeatsFourth({ seats, choosen, seatChoose }) {
             return (
               <div className={(item.index + 1) % 4 === 0 ? "flex flex-col gap-[3px]" : "flex flex-col gap-[3px]"}>
                 <div
-                  className={item.index === choosen ? seatChoosenClass : seatClass}
+                  className={choosen && choosen.includes(item.index) ? seatChoosenClass : seatClass}
                   onClick={() => {
-                    console.log(item.index === choosen);
                     seatChoose(item.index);
                   }}
                 >
@@ -67,9 +63,8 @@ export default function SeatsFourth({ seats, choosen, seatChoose }) {
                 </div>
                 {seats[index + 1] && (
                   <div
-                    className={item.index + 1 === choosen ? seatChoosenClass : seatClass}
+                    className={choosen && choosen.includes(item.index + 1) ? seatChoosenClass : seatClass}
                     onClick={() => {
-                      console.log(item.index === choosen);
                       seatChoose(item.index + 1);
                     }}
                   >

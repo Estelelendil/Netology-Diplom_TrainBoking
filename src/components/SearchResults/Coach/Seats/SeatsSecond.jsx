@@ -15,9 +15,8 @@ export default function SeatsSecond({ seats, choosen, seatChoose }) {
           return (
             <div className={(item.index + 1) % 4 === 0 ? "flex flex-col ml-[34px] mr-[4px]" : "flex flex-col"}>
               <div
-                className={item.index === choosen ? seatChoosenClass : seatClass}
+                className={choosen && choosen.includes(item.index) ? seatChoosenClass : seatClass}
                 onClick={() => {
-                  console.log(item.index === choosen);
                   seatChoose(item.index);
                 }}
               >
@@ -26,10 +25,9 @@ export default function SeatsSecond({ seats, choosen, seatChoose }) {
               {seats[index + 1] && (
                 <div
                   onClick={() => {
-                    console.log(item.index === choosen);
                     seatChoose(item.index + 1);
                   }}
-                  className={item.index + 1 === choosen ? seatChoosenClass : seatClass}
+                  className={choosen && choosen.includes(item.index + 1) ? seatChoosenClass : seatClass}
                 >
                   {seats[index + 1].index}
                 </div>

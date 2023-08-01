@@ -2,7 +2,7 @@ import classNames from "classnames";
 import React from "react";
 
 export default function CoachCard({ item }) {
-  console.log("CoachCard", item);
+  // console.log("CoachCard", item);
   const haveCond = classNames({
     "bg-[url('img/cond.png')] w-[33px] h-[33px] bg-no-repeat border-1 border bg-contain bg-[length:20px_20px] p-2 bg-center": true,
     " bg-gray border-1  rounded-[3px]": item.coach.have_air_conditioning,
