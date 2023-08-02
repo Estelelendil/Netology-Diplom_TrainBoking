@@ -1,10 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
-import SearchResultsTrain from "../../SearchResults/SearchResultstrain";
-import { useLazyJsonFetch, useQuery } from "../../../utils";
-import Loading from "../../UI/Loading";
 import { Outlet, useLocation } from "react-router";
-import Filters from "../../SearchResults/Filters";
 
 export default function Main() {
   // const [stepSearch, setStepSearch] = useState(0);

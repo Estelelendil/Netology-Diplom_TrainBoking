@@ -53,6 +53,8 @@ export default function SeatsThird({ seats, choosen, seatChoose }) {
               </div>
             </div>
           );
+        } else {
+          return null;
         }
       })}
     </div>

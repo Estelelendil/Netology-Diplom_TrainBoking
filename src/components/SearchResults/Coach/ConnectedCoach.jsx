@@ -7,6 +7,7 @@ import SeatFilter from "../Train/Components/Ticket/SeatFilter";
 import classNames from "classnames";
 import CoachCard from "./CoachCard";
 import CoachMap from "./CoachMap";
+import { useNavigate } from "react-router";
 // import Button from "../UI/Button";
 
 export default function ConnectedCoach({ item, setVersion }) {
@@ -33,6 +34,7 @@ export default function ConnectedCoach({ item, setVersion }) {
   // eslint-disable-next-line no-unused-vars
   const [data, loading, error, callback] = useLazyJsonFetch();
   const [coach, setCoach] = useState();
+  const navigate = useNavigate();
   useEffect(() => {
     setCoach({});
     callback(
@@ -80,7 +82,7 @@ export default function ConnectedCoach({ item, setVersion }) {
     });
   };
   return (
-    <div className="border-1 border-gray/30">
+    <div className="flex flex-col border-1 border-gray/30">
       <div className="flex flex-col w-[959px] gap-[20px]">
         {/* {item.coach._id} */}
         <div className="flex w-full gap-[10px] h-[60px] py-2 p-3 my-4" onClick={() => setVersion(false)}>
@@ -145,6 +147,19 @@ export default function ConnectedCoach({ item, setVersion }) {
                 choosen={coach.chooseSeat}
                 seatChoose={seatChoose}
               ></CoachMap>
+              {coach.chooseSeat && (
+                <button
+                  disabled={coach.chooseSeat.length < 1}
+                  onClick={() => {
+                    console.log("redirect");
+                    navigate(`/search/persons?coach=${coach.item.coach._id}&seat=${coach.chooseSeat[0]}`);
+                    // nextStep();
+                  }}
+                  className="w-[200px] h-[50px] bg-orange rounded text-18 text-white uppercase font-bold self-end"
+                >
+                  Далее
+                </button>
+              )}
             </div>
           ) : (
             <></>
@@ -152,8 +167,7 @@ export default function ConnectedCoach({ item, setVersion }) {
         </div>
       )}
       {loading && <Loading />}
-      {/* <div>RECM</div>
-      <Button label="Далее" color="orange"></Button> */}
+      {/* <Button label="Далее" color="orange"></Button> */}
     </div>
   );
 }

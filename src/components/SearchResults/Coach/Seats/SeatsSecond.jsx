@@ -34,6 +34,8 @@ export default function SeatsSecond({ seats, choosen, seatChoose }) {
               )}
             </div>
           );
+        } else {
+          return null;
         }
         // if (((item.index - 5) % 4 === 0) | ((item.index - 6) % 4 === 0)) {
         //   return (

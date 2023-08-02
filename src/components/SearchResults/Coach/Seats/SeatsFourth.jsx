@@ -73,6 +73,8 @@ export default function SeatsFourth({ seats, choosen, seatChoose }) {
                 )}
               </div>
             );
+          } else {
+            return null;
           }
         })
         // return <div className="w-[32px] h-[25px] bg-gray/20 border-1 border-gray font-semibold rounded-[3px] text-center ">{item.index}</div>;

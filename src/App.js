@@ -10,6 +10,7 @@ import Footer from "./components/SubMain/Footer";
 import HeaderMenu from "./components/Landing/Main/HeaderMenu";
 import ConnectedCoach from "./components/SearchResults/Coach/ConnectedCoach";
 import ConnectedTrain from "./components/SearchResults/Train/ConnectedTrain";
+import ConnectedPersons from "./components/SearchResults/Coach/Persons/ConnectedPersons";
 
 function App() {
   // let { from_сity_id } = useParams();
@@ -26,6 +27,7 @@ function App() {
             <Route path="search/" element={<Main />}>
               <Route path="trains/*" element={<ConnectedTrain />} />
               <Route path="seats/*" element={<ConnectedCoach />} />
+              <Route path="persons/*" element={<ConnectedPersons />} />
             </Route>
           </Route>
         </Routes>
