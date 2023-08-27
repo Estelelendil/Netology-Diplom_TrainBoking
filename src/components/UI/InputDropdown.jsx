@@ -2,7 +2,7 @@ import classNames from "classnames";
 import React, { useState } from "react";
 import useJsonFetch from "../../utils";
 import Dropdown from "./Dropdown";
-import Loading from "./Loading";
+
 import OutsideClick from "react-outside-click-handler-lite";
 import { useController } from "react-hook-form";
 

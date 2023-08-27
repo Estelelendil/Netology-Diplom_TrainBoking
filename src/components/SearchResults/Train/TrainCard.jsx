@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import Button from "../../UI/Button";
+import Button from "../../UI/MyButton";
 // import { useNavigate } from "react-router";
 import { useLazyJsonFetch } from "../../../utils";
 import ConnectedCoach from "../Coach/ConnectedCoach";
 import TrainHeader from "./Components/TrainHeader";
 import TrainMain from "./Components/TrainMain";
 import TrainSeats from "./Components/TrainSeats";
+import MyButton from "../../UI/MyButton";
 
 export default function TrainCard({ item }) {
   // const navigate = useNavigate();
@@ -52,7 +53,7 @@ export default function TrainCard({ item }) {
           <TrainMain item={item} />
           <div className="flex flex-col w-[350px] px-[20px] justify-between py-[30px]">
             <TrainSeats item={item} />
-            <Button
+            <MyButton
               label="Выбрать места"
               color="orange"
               className="text-white font-bold w-[228px]"
@@ -62,7 +63,7 @@ export default function TrainCard({ item }) {
               }}
               // onClick={() => navigate(`/search/seats?id=${item.arrival._id}`)}
               //TODO: не перреход на страницу, а открытие подраздела c запросом
-            ></Button>
+            ></MyButton>
           </div>
         </div>
       )}

@@ -2,11 +2,12 @@
 // import { useState } from "react";
 import React from "react";
 import { useForm } from "react-hook-form";
-import Button from "../UI/Button";
+import Button from "../UI/MyButton";
 import InputCalendar from "../UI/InputCalendar";
 import InputDropdown from "../UI/InputDropdown";
 import classNames from "classnames";
 import { useNavigate } from "react-router";
+import MyButton from "../UI/MyButton";
 // import MyRangeSlider from "../UI/MyRangeSlider";
 // import { useLazyJsonFetch } from "../../utils";
 
@@ -104,7 +105,7 @@ export default function SearchMain({ setStep, step, setSearchParams, searchParam
             </div>
           </div>
         </div>
-        <Button
+        <MyButton
           className="w-[286px] self-end text-24 mt-[20px] mr-[60px]"
           label="найти билеты"
           // onClick={() => {
