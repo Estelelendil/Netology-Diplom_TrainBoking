@@ -21,7 +21,7 @@ export default function InputCalendar({ placeholder, required, name, text, contr
   const [date, setDate] = useState(getFormattedDate(field.value));
   return (
     <div className="flex flex-col gap-[17px] w-full relative">
-      <p className=" text-white text-24">{text}</p>
+      <span className=" text-white text-24">{text}</span>
       <OutsideClick
         onOutsideClick={() => {
           setOpenCalendar(false);

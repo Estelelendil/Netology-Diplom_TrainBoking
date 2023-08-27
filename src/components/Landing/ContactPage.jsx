@@ -1,5 +1,5 @@
 import React from "react";
-import MyInput from "../UI/Input";
+import MyInput from "../UI/MyInput";
 import MyButton from "../UI/MyButton";
 
 export default function ContactPage() {
