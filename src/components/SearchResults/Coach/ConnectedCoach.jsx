@@ -8,7 +8,6 @@ import classNames from "classnames";
 import CoachCard from "./CoachCard";
 import CoachMap from "./CoachMap";
 import { useNavigate } from "react-router";
-// import Button from "../UI/Button";
 
 export default function ConnectedCoach({ item, setVersion }) {
   const [searchParams, setSearchParams] = useState({});
@@ -65,9 +64,11 @@ export default function ConnectedCoach({ item, setVersion }) {
         if (newObj.chooseSeat.includes(number)) {
           console.log("includes", newObj.chooseSeat.includes(number));
           newObj.chooseSeat = newObj.chooseSeat.filter((item) => item !== number);
+          localStorage.setItem("chooseSeat", JSON.stringify(newObj.chooseSeat));
         } else if (prev.chooseSeat.length < 3) {
           console.log("push");
           newObj.chooseSeat.push(number);
+          localStorage.setItem("chooseSeat", JSON.stringify(newObj.chooseSeat));
         }
       } else {
         newObj.chooseSeat = [];
@@ -152,7 +153,9 @@ export default function ConnectedCoach({ item, setVersion }) {
                   disabled={coach.chooseSeat.length < 1}
                   onClick={() => {
                     console.log("redirect");
-                    navigate(`/search/persons?coach=${coach.item.coach._id}&seat=${coach.chooseSeat[0]}`);
+                    navigate(
+                      `/search/persons?coach=${coach.item.coach.train}&seat=${coach.chooseSeat[0]}&direction=${coach.item.coach._id}`
+                    );
                     // nextStep();
                   }}
                   className="w-[200px] h-[50px] bg-orange rounded text-18 text-white uppercase font-bold self-end"
@@ -167,7 +170,7 @@ export default function ConnectedCoach({ item, setVersion }) {
         </div>
       )}
       {loading && <Loading />}
-      {/* <Button label="Далее" color="orange"></Button> */}
+      {/* <MyButton label="Далее" color="orange"></MyButton> */}
     </div>
   );
 }
