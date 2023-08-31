@@ -81,8 +81,26 @@ export function useLazyJsonFetch() {
         .catch((err) => setError(err));
     }
   }, []);
+  const post = useCallback((url, body) => {
+    if (url) {
+      fetch(url, {
+        method: "POST",
+        body: JSON.stringify(body),
+      })
+        .then((response) => {
+          setLoading(false);
+          console.log("response", response);
 
-  return [data, loading, error, callback];
+          if (response.status !== 200) {
+            throw new Error(response.status);
+          }
+          return response.json();
+        })
+        .then((answer) => setData(answer))
+        .catch((err) => setError(err));
+    }
+  }, []);
+  return [data, loading, error, callback, post];
 }
 
 export function useQuery() {
