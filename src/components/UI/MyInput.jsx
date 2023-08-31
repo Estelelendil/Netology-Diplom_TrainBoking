@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import React from "react";
 
-export default function MyInput({ placeholder, text, setValue, name, type, required }) {
+export default function MyInput({ placeholder, text, setValue, name, type, required, defaultValue }) {
   const inputClassName = classNames({
     "p-[15px] border-[1px] border-[#d9d9d9] rounded-[5px] w-[100%] bg-white": true,
   });
@@ -11,6 +11,7 @@ export default function MyInput({ placeholder, text, setValue, name, type, requi
       <input
         required={required}
         name={name}
+        value={defaultValue}
         className={inputClassName}
         type={type || "text"}
         placeholder={placeholder}
