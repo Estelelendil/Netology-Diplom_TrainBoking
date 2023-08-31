@@ -26,14 +26,12 @@ export default function TrainHeaderFull({ item }) {
         <div className="flex  justify-between gap-[50px] items-center p-[15px] border-r-1 border-dotted border-[#E5E5E5] py-[30px]">
           <div className="flex flex-col">
             <p className="text-24 font-bold">{timedepartureFrom.format("HH:mm")}</p>
-            {/* <p className="text-20">{item.departure.from.city.name}</p> */}
             <p className="text-16 text-[#928F94]">{item.departure.from.railway_station_name}</p>
           </div>
           <div className="bg-[url('img/arrow.svg')] w-[30px] bg-no-repeat bg-contain h-[20px]"></div>
 
           <div className="flex flex-col justify-center">
             <p className="text-24 font-bold">{timedepartureTo.format("HH:mm")}</p>
-            {/* <p className="text-20">{item.departure.to.city.name}</p> */}
             <p className="text-16 text-[#928F94]">{item.departure.to.railway_station_name}</p>
           </div>
         </div>
