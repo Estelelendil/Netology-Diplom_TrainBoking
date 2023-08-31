@@ -4,9 +4,12 @@ import Logo from "./Logo";
 import SearchMain from "../../SubMain/SearchMain";
 import classNames from "classnames";
 import SearchProgressBar from "../Items/SearchProgressBar";
+import { useQuery } from "../../../utils";
 
 export default function HeaderMenu() {
   const [stepSearch, setStepSearch] = useState(0);
+  let query = useQuery();
+  const price = query.get("price");
   const containerClass = classNames({
     // flex: true,
     " flex justify-center p-l-[50px] gap-[120px]": stepSearch === 0,
@@ -41,7 +44,7 @@ export default function HeaderMenu() {
       </div>
       <div className={mainClass}>
         <div className={containerClass} id="container">
-          {stepSearch === 0 ? (
+          {stepSearch === 0 && !price ? (
             <div className="flex flex-col ">
               <h1 className=" mt-[162px] text-white text-72 font-thin">Вся жизнь -</h1>
               <h1 className="text-white text-72 font-bold">путешествие!</h1>
@@ -49,12 +52,14 @@ export default function HeaderMenu() {
           ) : (
             <></>
           )}
-          <SearchMain
-            step={stepSearch}
-            setStep={setStepSearch}
-            // setSearchParams={setSearchParams}
-            // paramSearch={searchParams}
-          />
+          {!price && (
+            <SearchMain
+              step={stepSearch}
+              setStep={setStepSearch}
+              // setSearchParams={setSearchParams}
+              // paramSearch={searchParams}
+            />
+          )}
         </div>
         {stepSearch !== 0 ? <SearchProgressBar searchStep={stepSearch} /> : <></>}
       </div>

@@ -9,13 +9,14 @@ export default function FinalPage({ data: dadata, goBack, info, goBackBack }) {
   // const [data, loading, error, post] = useLazyJsonFetch();
   const navigate = useNavigate();
   console.log("FINALPAGE", dadata);
+  const fullName = dadata.user.first_name + "_" + dadata.user.patronymic;
   const sentData = useCallback(() => {
     fetch("https://students.netoservices.ru/fe-diplom/order", {
       method: "POST",
       body: JSON.stringify({ ...dadata }),
     }).then((res) => {
       if (res.status === 200) {
-        navigate("/result");
+        navigate(`/result?price=${PriceSum(info.price, dadata.departure.seats.length)}&name=${fullName}`);
       }
       console.log("res", res);
     });
