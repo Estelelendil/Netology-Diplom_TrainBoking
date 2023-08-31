@@ -8,20 +8,21 @@ import MyButton from "../../../UI/MyButton";
 export default function PassengersCard({ setPerson, person, index, removePers }) {
   const { control, handleSubmit, data, setValue } = useForm(true);
 
-  const [gender, setGender] = useState(person.gender || true);
+  const [gender, setGender] = useState(person.gender || "true");
   const [adult, setAdult] = useState(person.is_adult || "true");
   const onSubmit = (data) => {
     console.log("Submit pas data", data, person.id);
-    if (data) setPerson({ ...data, gender, id: person.id });
+    if (data)
+      setPerson({ ...data, gender, id: person.id, document_type: adult === "true" ? "паспорт" : "свидетельство" });
   };
   console.log("person gender", gender, person.gender);
   const checkboxManClass = classNames({
     "w-[100px] h-[55px] rounded-l-lg border-l-1 border-y-1 border-[#d9d9d9] text-center pt-3 font-bold text-20": true,
-    "bg-orange": gender && person.gender,
+    "bg-orange": gender === "true",
   });
   const checkboxWomanClass = classNames({
     "w-[100px] h-[55px] rounded-r-lg border-y-1 border-r-1 border-[#d9d9d9] text-center pt-3 font-bold text-20": true,
-    "bg-orange": !gender || !person.gender,
+    "bg-orange": gender === "false",
   });
   console.log("PassengersCard data", data);
   return (
@@ -82,11 +83,11 @@ export default function PassengersCard({ setPerson, person, index, removePers })
           <div className="flex flex-col gap-[15px]">
             <span className="w-[150px] text-gray text-16">Пол</span>
             <div className="flex">
-              <div className={checkboxManClass} onClick={() => setGender(true)}>
+              <div className={checkboxManClass} onClick={() => setGender("true")}>
                 М
               </div>
 
-              <div className={checkboxWomanClass} onClick={() => setGender(false)}>
+              <div className={checkboxWomanClass} onClick={() => setGender("false")}>
                 Ж
               </div>
             </div>
@@ -106,17 +107,20 @@ export default function PassengersCard({ setPerson, person, index, removePers })
               <span className="w-[150px] text-gray text-16">Тип документа</span>
               {adult === "false" ? (
                 <select
+                  defaultValue={"свидетельство"}
                   className="h-[55px] w-[240px] bg-white border-1 rounded border-[#d9d9d9] text-gray pl-[10px]"
                   name="document_type"
                   control={control}
                   onChange={(e) => setValue("document_type", e.target.value)}
                 >
-                  <option className="text-gray pl-10px" selected value="паспорт">
+                  <option className="text-gray pl-10px" selected value="свидетельство">
                     свидетельство о рождении
                   </option>
                 </select>
               ) : (
                 <select
+                  required
+                  defaultValue={"паспорт"}
                   className="h-[55px] w-[240px] bg-white border-1 rounded border-[#d9d9d9] text-gray pl-[10px]"
                   name="document_type"
                   control={control}

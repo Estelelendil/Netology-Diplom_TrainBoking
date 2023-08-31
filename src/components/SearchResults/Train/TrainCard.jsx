@@ -1,16 +1,15 @@
 import React, { useState } from "react";
 // import { useNavigate } from "react-router";
-import { useLazyJsonFetch } from "../../../utils";
 import ConnectedCoach from "../Coach/ConnectedCoach";
 import TrainHeader from "./Components/TrainHeader";
 import TrainMain from "./Components/TrainMain";
 import TrainSeats from "./Components/TrainSeats";
 import MyButton from "../../UI/MyButton";
 
-export default function TrainCard({ item }) {
+export default function TrainCard({ item, final }) {
   // const navigate = useNavigate();
   // eslint-disable-next-line no-unused-vars
-  const [data, loading, callback] = useLazyJsonFetch();
+  // const [data, loading, callback] = useLazyJsonFetch();
   const [version, setVersion] = useState(false);
   console.log("TrainCard", item.departure.from);
 
@@ -52,17 +51,29 @@ export default function TrainCard({ item }) {
           <TrainMain item={item} />
           <div className="flex flex-col w-[350px] px-[20px] justify-between py-[30px]">
             <TrainSeats item={item} />
-            <MyButton
-              label="Выбрать места"
-              color="orange"
-              className="text-white font-bold w-[228px]"
-              onClick={() => {
-                setVersion(true);
-                // navigate(`/search/seats?id=${item.arrival._id}`);
-              }}
-              // onClick={() => navigate(`/search/seats?id=${item.arrival._id}`)}
-              //TODO: не перреход на страницу, а открытие подраздела c запросом
-            ></MyButton>
+            {final ? (
+              <MyButton
+                label="Изменить"
+                color="transparent"
+                className=" font-bold w-[228px]"
+                onClick={() => {
+                  setVersion(true);
+                  // navigate(`/search/seats?id=${item.arrival._id}`);
+                }}
+              ></MyButton>
+            ) : (
+              <MyButton
+                label="Выбрать места"
+                color="orange"
+                className="text-white font-bold w-[228px]"
+                onClick={() => {
+                  setVersion(true);
+                  // navigate(`/search/seats?id=${item.arrival._id}`);
+                }}
+                // onClick={() => navigate(`/search/seats?id=${item.arrival._id}`)}
+                //TODO: не перреход на страницу, а открытие подраздела c запросом
+              ></MyButton>
+            )}
           </div>
         </div>
       )}
