@@ -5,32 +5,32 @@ import MyInput from "../../../UI/MyInput";
 import InputCalendar from "../../../UI/InputCalendar";
 import MyButton from "../../../UI/MyButton";
 
-export default function PassengersCard({ setPerson, person, index }) {
+export default function PassengersCard({ setPerson, person, index, removePers }) {
   const { control, handleSubmit, data, setValue } = useForm(true);
-  //   const [child, setChild] = useState(false);
-  // let person = persons.length !== 0 ? persons[index] : undefined;
-  const [gender, setGender] = useState(person?.gender || true);
-  const [adult, setAdult] = useState(true);
+
+  const [gender, setGender] = useState(person.gender || true);
+  const [adult, setAdult] = useState(person.is_adult || "true");
   const onSubmit = (data) => {
-    // console.log("FORM DATA", data);
-    if (data) setPerson({ ...data, gender });
+    console.log("Submit pas data", data, person.id);
+    if (data) setPerson({ ...data, gender, id: person.id });
   };
-  // const inputClass = classNames({
-  //   "h-[50px] w-[280px] bg-white border-1 rounded border-[#d9d9d9]": true,
-  // });
+  console.log("person gender", gender, person.gender);
   const checkboxManClass = classNames({
     "w-[100px] h-[55px] rounded-l-lg border-l-1 border-y-1 border-[#d9d9d9] text-center pt-3 font-bold text-20": true,
-    "bg-orange": gender,
+    "bg-orange": gender && person.gender,
   });
   const checkboxWomanClass = classNames({
     "w-[100px] h-[55px] rounded-r-lg border-y-1 border-r-1 border-[#d9d9d9] text-center pt-3 font-bold text-20": true,
-    "bg-orange": !gender,
+    "bg-orange": !gender || !person.gender,
   });
-  console.log("data", data);
+  console.log("PassengersCard data", data);
   return (
     <div className="flex flex-col gap-[25px] border-1 border-slate-400 w-[830px] h-[730px] ">
-      <div className="bg-[#F9F9F9] h-[107px] w-full border-b-1 border-[#d9d9d9]">
-        <h3 className="text-30 py-8 pl-8 ">{`Пассажир ${person.id}`}</h3>
+      <div className="bg-[#F9F9F9] flex justify-between items-center pr-8 h-[107px] w-full border-b-1 border-[#d9d9d9]">
+        <h3 className="text-30 py-8 pl-8 ">{`Пассажир ${index + 1}`}</h3>
+        <button className="text-gray" onClick={() => removePers(person.id)}>
+          ❌
+        </button>
       </div>
       <form
         onSubmit={handleSubmit(onSubmit)}
@@ -40,9 +40,10 @@ export default function PassengersCard({ setPerson, person, index }) {
           className="h-[50px] w-[240px] bg-white border-1 rounded border-[#d9d9d9] text-gray pl-[10px]"
           name="is_adult"
           control={control}
+          defaultValue={person.is_adult || "true"}
           onChange={(e) => {
             setValue("is_adult", e.target.value);
-            setAdult(e.target.value === "true" ? true : false);
+            setAdult(e.target.value === "true" ? "true" : "false");
           }}
         >
           <option className="text-gray pl-10px" value="false">
@@ -52,11 +53,30 @@ export default function PassengersCard({ setPerson, person, index }) {
             Взрослый
           </option>
         </select>
-        {/* <input className={inputClass} type="text" placeholder="Имя" name="name" control={control} /> */}
         <div className="flex gap-[30px] h-[50px] ">
-          <MyInput text="Имя" control={control} name="first_name" required setValue={setValue} />
-          <MyInput text="Фамилия" control={control} name="last_name" required setValue={setValue} />
-          <MyInput text="Отчество" control={control} name="patronymic" setValue={setValue} />
+          <MyInput
+            text="Имя"
+            control={control}
+            name="first_name"
+            required
+            defaultValue={person?.first_name}
+            setValue={setValue}
+          />
+          <MyInput
+            text="Фамилия"
+            control={control}
+            name="last_name"
+            defaultValue={person?.last_name}
+            required
+            setValue={setValue}
+          />
+          <MyInput
+            text="Отчество"
+            control={control}
+            defaultValue={person?.patronymic}
+            name="patronymic"
+            setValue={setValue}
+          />
         </div>
         <div className="flex items-center gap-[30px] mt-[30px]">
           <div className="flex flex-col gap-[15px]">
@@ -71,13 +91,20 @@ export default function PassengersCard({ setPerson, person, index }) {
               </div>
             </div>
           </div>
-          <InputCalendar control={control} text="Дата рождения" required name="birthday" placeholder="ДД/ММ/ГГ" />
+          <InputCalendar
+            defaultValue={person?.birthday}
+            control={control}
+            text="Дата рождения"
+            required
+            name="birthday"
+            placeholder="ДД/ММ/ГГ"
+          />
         </div>
         <div>
           <div className="flex gap-[30px] border-t-1 border-slate-200 pt-8 mt-8">
             <div className="flex flex-col gap-[15px]">
               <span className="w-[150px] text-gray text-16">Тип документа</span>
-              {!adult ? (
+              {adult === "false" ? (
                 <select
                   className="h-[55px] w-[240px] bg-white border-1 rounded border-[#d9d9d9] text-gray pl-[10px]"
                   name="document_type"
@@ -87,9 +114,6 @@ export default function PassengersCard({ setPerson, person, index }) {
                   <option className="text-gray pl-10px" selected value="паспорт">
                     свидетельство о рождении
                   </option>
-                  {/* <option className="text-gray pl-10px" value="что-то еще">
-                      Другое
-                    </option> */}
                 </select>
               ) : (
                 <select
@@ -107,13 +131,14 @@ export default function PassengersCard({ setPerson, person, index }) {
                 </select>
               )}
             </div>
-            {adult && (
+            {adult === "true" && (
               <MyInput
                 text="Cерия"
+                defaultValue={person?.document_series}
                 placeholder="ХХХХ"
                 control={control}
                 required
-                name="document_data"
+                name="document_series"
                 setValue={setValue}
               />
             )}
@@ -122,12 +147,12 @@ export default function PassengersCard({ setPerson, person, index }) {
               placeholder="ХХХХХХ"
               control={control}
               required
-              name="document_data"
+              defaultValue={person?.document_number || person.document_data}
+              name="document_number"
               setValue={setValue}
             />
           </div>
         </div>
-        {/* <button>Следующий пассажир</button> */}
         <div className="w-full border-t-1 border-slate-200 pt-8 flex justify-end mt-5">
           <div className="w-[250px] self-end ">
             <MyButton
