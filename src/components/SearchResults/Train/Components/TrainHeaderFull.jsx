@@ -40,7 +40,7 @@ export default function TrainHeaderFull({ item }) {
         <div className="flex items-center gap-[10px] pr-8">
           <div className="bg-[url('img/clock.png')] w-[30px] bg-no-repeat bg-contain h-[20px]"></div>
           <div className=" flex flex-col justify-center">
-            <p className="text-18 text-black">{`${dataDiffdeparture.format("H")} часа `}</p>
+            <p className="text-18 text-black">{`${dataDiffdeparture.format("H")}: `}</p>
             <p className="text-18 text-black">{`${dataDiffdeparture.format("m")} минут `}</p>
           </div>
         </div>
