@@ -6,22 +6,25 @@ import MyButton from "../../../UI/MyButton";
 import FinalPage from "../../FinalPage";
 import { isEmpty } from "lodash";
 
-export default function PaymentCard({ goBack, persons, coachId, info, directionId }) {
+export default function UserCard({ goBack, persons, coachId, info, directionId, user, setUser }) {
   const { control, handleSubmit, setValue } = useForm(true);
   const [finalData, setFinalData] = useState({});
-  const [payCash, setPayCash] = useState(isEmpty(finalData) ? true : finalData.user.payment_method);
+  const [payCash, setPayCash] = useState(
+    isEmpty(finalData) ? true : finalData.user.payment_method || user?.payment_method
+  );
   const [nextPage, setNextPage] = useState(false);
   const onSubmit = (data) => {
     console.log("submitData", data);
     if (data) {
       const seats = [];
       persons.map((item, index) => {
+        const { document_number, document_series, ...persInfo } = item;
         seats.push({
           coach_is: coachId,
-          person_info: item,
+          person_info: { ...persInfo, document_data: `${document_series || ""} ${document_number}` },
           seat_number: info.chosenSeats[index],
           is_child: !item.is_adult,
-          include_children_seat: item.include_children_seat,
+          include_children_seat: false,
         });
         console.log("seats", seats);
         return null;
@@ -34,6 +37,7 @@ export default function PaymentCard({ goBack, persons, coachId, info, directionI
         },
       };
       setFinalData(finalObj);
+      setUser({ ...data, payment_method: payCash ? "cash" : "online" });
       setNextPage(true);
     }
     // setUser({ ...data, payment_method: payCash ? "cash" : "online" });
@@ -51,7 +55,15 @@ export default function PaymentCard({ goBack, persons, coachId, info, directionI
   return (
     <>
       {nextPage ? (
-        <FinalPage data={finalData} goBack={() => setNextPage(false)} />
+        <FinalPage
+          info={info}
+          data={finalData}
+          goBack={() => setNextPage(false)}
+          goBackBack={() => {
+            setNextPage(false);
+            goBack();
+          }}
+        />
       ) : (
         <div>
           <div className="flex flex-col gap-[25px] border-1 border-slate-400 w-[830px] pb-6 ">
@@ -68,13 +80,13 @@ export default function PaymentCard({ goBack, persons, coachId, info, directionI
                   text="Имя"
                   control={control}
                   name="first_name"
-                  defaultValue={finalData?.user?.first_name}
+                  defaultValue={finalData?.user?.first_name || user?.first_name}
                   required
                   setValue={setValue}
                 />
                 <MyInput
                   text="Фамилия"
-                  defaultValue={finalData?.user?.last_name}
+                  defaultValue={finalData?.user?.last_name || user?.last_name}
                   control={control}
                   name="last_name"
                   required
@@ -82,7 +94,7 @@ export default function PaymentCard({ goBack, persons, coachId, info, directionI
                 />
                 <MyInput
                   text="Отчество"
-                  defaultValue={finalData?.user?.patronymic}
+                  defaultValue={finalData?.user?.patronymic || user?.patronymic}
                   control={control}
                   name="patronymic"
                   setValue={setValue}
@@ -91,7 +103,7 @@ export default function PaymentCard({ goBack, persons, coachId, info, directionI
               <div className="flex flex-col w-1/2 gap-6">
                 <MyInput
                   text="Телефон"
-                  defaultValue={finalData?.user?.phone}
+                  defaultValue={finalData?.user?.phone || user?.phone}
                   control={control}
                   name="phone"
                   setValue={setValue}
@@ -99,7 +111,7 @@ export default function PaymentCard({ goBack, persons, coachId, info, directionI
 
                 <MyInput
                   text="E-mail"
-                  defaultValue={finalData?.user?.email}
+                  defaultValue={finalData?.user?.email || user?.email}
                   control={control}
                   name="email"
                   setValue={setValue}

@@ -4,8 +4,8 @@ import TripDetails from "./TripDetails";
 import PassengersCard from "./PassengersCard";
 import MyButton from "../../../UI/MyButton";
 import { isEmpty } from "lodash";
-import PaymentCard from "./PaymentCard";
 import { useNavigate } from "react-router";
+import UserCard from "./UserCard";
 
 export default function ConnectedPersons() {
   let query = useQuery();
@@ -13,7 +13,7 @@ export default function ConnectedPersons() {
   const direction = query.get("direction");
   const [info, setInfo] = useState({});
   const [nextPayment, setNextPayment] = useState(false);
-  // const [user, setUser] = useState({});
+  const [user, setUser] = useState({});
   const navigate = useNavigate();
   useEffect(() => {
     let rawValue = localStorage.getItem("tripInfo");
@@ -73,8 +73,10 @@ export default function ConnectedPersons() {
 
       <div className="flex flex-col gap-[30px] mt-[36px] pl-[75px]">
         {nextPayment ? (
-          <PaymentCard
+          <UserCard
             info={info}
+            user={user}
+            setUser={setUser}
             persons={persons}
             directionId={direction}
             coachId={coach}

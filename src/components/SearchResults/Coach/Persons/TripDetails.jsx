@@ -2,6 +2,7 @@ import classNames from "classnames";
 import React from "react";
 import Loading from "../../../UI/Loading";
 import moment from "moment";
+import { PriceSum } from "../../../../helpers";
 
 export default function TripDetails({ item, persons }) {
   // const timedepartureFrom = moment(item.departure.from.datetime);
@@ -23,16 +24,7 @@ export default function TripDetails({ item, persons }) {
   //     setInfo(infoFromLS);
   //   }
   // }, [info]);
-  const PriceSum = (arr, num) => {
-    let sum = 0;
-    arr.forEach((item, index) => {
-      if (index < num) {
-        sum += item;
-        return;
-      } else return;
-    });
-    return sum;
-  };
+
   const mainClass = classNames({
     "w-[360px] h-[950px] bg-[#3E3C41] mt-9 px-[20px] pt-[10px]": true,
   });
