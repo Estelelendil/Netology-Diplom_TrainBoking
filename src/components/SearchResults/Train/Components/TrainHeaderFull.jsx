@@ -2,10 +2,10 @@ import moment from "moment";
 import React from "react";
 
 export default function TrainHeaderFull({ item }) {
-  const timeArrivalFrom = moment(item.arrival.from.datetime);
-  const timeArrivalTo = moment(item.arrival.to.datetime);
-  const timeDiffArrival = timeArrivalTo.diff(timeArrivalFrom);
-  const dataDiffArrival = moment(timeDiffArrival);
+  // const timeArrivalFrom = moment(item.arrival.from.datetime);
+  // const timeArrivalTo = moment(item.arrival.to.datetime);
+  // const timeDiffArrival = timeArrivalTo.diff(timeArrivalFrom);
+  // const dataDiffArrival = moment(timeDiffArrival);
   const timedepartureFrom = moment(item.departure.from.datetime);
   const timedepartureTo = moment(item.departure.to.datetime);
   const timeDiffdeparture = timedepartureTo.diff(timedepartureFrom);
