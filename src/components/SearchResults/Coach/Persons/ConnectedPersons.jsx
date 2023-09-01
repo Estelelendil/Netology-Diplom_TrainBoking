@@ -6,6 +6,7 @@ import MyButton from "../../../UI/MyButton";
 import { isEmpty } from "lodash";
 import { useNavigate } from "react-router";
 import UserCard from "./UserCard";
+import classNames from "classnames";
 
 export default function ConnectedPersons() {
   let query = useQuery();
@@ -26,7 +27,12 @@ export default function ConnectedPersons() {
   }, []);
 
   const [persons, setPersons] = useState([{ id: 1 }]);
-
+  const afterClass = classNames({
+    "text-14 text-red": true,
+    hidden: persons.every((item) => {
+      return item.first_name ? true : false;
+    }),
+  });
   const addPerson = (obj) => {
     console.log("ADD PERSONS", obj);
     setPersons((prev) => {
@@ -44,7 +50,9 @@ export default function ConnectedPersons() {
   };
   const addPassenger = () => {
     console.log("addPassenger");
-    addPerson({ id: persons[persons.length - 1].id + 1 });
+    if (persons.length < info.price.length) {
+      addPerson({ id: persons[persons.length - 1].id + 1 });
+    }
   };
 
   const removePassenger = (id) => {
@@ -88,6 +96,7 @@ export default function ConnectedPersons() {
               <PassengersCard
                 key={item.id}
                 index={index}
+                addPassenger={addPassenger}
                 setPerson={addPerson}
                 person={item}
                 removePers={removePassenger}
@@ -119,25 +128,32 @@ export default function ConnectedPersons() {
                 color="transparent"
                 onClick={() => navigate(-1)}
               ></MyButton>
-              <MyButton
-                label="Далее"
-                className={"w-[250px] self-end"}
-                color="orange"
-                onClick={() => {
-                  console.log("Persons", persons);
-                  // if (
-                  //   persons.every((item) => {
-                  //     if (!item.name) {
-                  //       return false;
-                  //     }
-                  //   })
-                  // ) {
-                  //   console.log("Заполните даннние пассажиров");
-                  // } else {
-                  setNextPayment(true);
-                  // }
-                }}
-              ></MyButton>
+              <div className="flex flex-col">
+                <span className={afterClass}>Заполните даннние всех пассажиров</span>
+                <MyButton
+                  label="Далее"
+                  className={"w-[250px] self-end "}
+                  color="orange"
+                  disabled={
+                    !persons.every((item) => {
+                      return item.first_name ? true : false;
+                    })
+                  }
+                  onClick={() => {
+                    console.log("Persons", persons);
+                    if (
+                      persons.every((item) => {
+                        return item.first_name ? true : false;
+                      })
+                    ) {
+                      setNextPayment(true);
+                    } else {
+                      console.log("Заполните даннние пассажиров");
+                    }
+                    // }
+                  }}
+                ></MyButton>
+              </div>
             </div>
           </div>
         )}

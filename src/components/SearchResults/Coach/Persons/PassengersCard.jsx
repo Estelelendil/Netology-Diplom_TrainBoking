@@ -5,7 +5,7 @@ import MyInput from "../../../UI/MyInput";
 import InputCalendar from "../../../UI/InputCalendar";
 import MyButton from "../../../UI/MyButton";
 
-export default function PassengersCard({ setPerson, person, index, removePers }) {
+export default function PassengersCard({ setPerson, person, index, removePers, addPassenger }) {
   const { control, handleSubmit, data, setValue } = useForm(true);
 
   const [gender, setGender] = useState(person.gender || "true");
@@ -14,6 +14,7 @@ export default function PassengersCard({ setPerson, person, index, removePers })
     console.log("Submit pas data", data, person.id);
     if (data)
       setPerson({ ...data, gender, id: person.id, document_type: adult === "true" ? "паспорт" : "свидетельство" });
+    addPassenger();
   };
   console.log("person gender", gender, person.gender);
   const checkboxManClass = classNames({
