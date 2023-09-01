@@ -77,7 +77,7 @@ export default function FinalPage({ data: dadata, goBack, info, goBackBack }) {
         ></MyButton>
         <MyButton
           className={" w-[250px] p-4 h-[100px]"}
-          label="Подтврдить"
+          label="Подтвердить"
           color="orange"
           onClick={() => sentData()}
         ></MyButton>
