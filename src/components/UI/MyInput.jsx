@@ -19,7 +19,7 @@ export default function MyInput({
   });
   return (
     <div className="flex flex-col gap-[17px]">
-      <span className="w-[400px] text-white text-24">{text}</span>
+      <span className="w-[150px] text-white text-24">{text}</span>
       <input
         required={required}
         name={name}

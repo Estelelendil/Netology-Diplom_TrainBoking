@@ -11,7 +11,7 @@ import { useNavigate } from "react-router";
 import { isEmpty } from "lodash";
 import Notification from "../../UI/Notification";
 
-export default function ConnectedCoach({ item, setVersion }) {
+export default function ConnectedCoach({ item, setVersion, coachSeat }) {
   const [searchParams, setSearchParams] = useState({});
   const buttonCoach = classNames({
     "text-18 font-bold text-black": true,
@@ -37,8 +37,13 @@ export default function ConnectedCoach({ item, setVersion }) {
   // eslint-disable-next-line no-unused-vars
   const [data, loading, error, callback] = useLazyJsonFetch();
   const [coach, setCoach] = useState();
+  const [seatCount, setSeatCount] = useState({
+    adult: 3,
+    children: 0,
+    baby: 0,
+  });
   const navigate = useNavigate();
-  console.log("COACH", coach);
+  console.log("seatCount", seatCount.adult + seatCount.children);
   //информация по id отправления на карту поезда
   useEffect(() => {
     setCoach({});
@@ -99,7 +104,7 @@ export default function ConnectedCoach({ item, setVersion }) {
           console.log("includes", newObj.chooseSeat.includes(number));
           newObj.chooseSeat = newObj.chooseSeat.filter((item) => item !== number);
           // localStorage.setItem("chooseSeat", JSON.stringify(newObj.chooseSeat));
-        } else if (prev.chooseSeat.length < 3) {
+        } else if (prev.chooseSeat.length < Number(seatCount.adult) + Number(seatCount.children)) {
           console.log("push");
           newObj.chooseSeat.push(number);
           // localStorage.setItem("chooseSeat", JSON.stringify(newObj.chooseSeat));
@@ -129,7 +134,7 @@ export default function ConnectedCoach({ item, setVersion }) {
         </div>
         <TrainHeaderFull item={item} />
 
-        <TicketHeader />
+        <TicketHeader setSeatCount={setSeatCount} />
         <h3 className=" h-[60px] rounded text-24 font-semibold py-2 px-4">Тип вагона</h3>
         <div className="flex justify-between items-center px-10">
           {seatFilter.map((item) => {
@@ -143,8 +148,8 @@ export default function ConnectedCoach({ item, setVersion }) {
           {isEmpty(coach) && (
             <Notification
               mainClass="bg-[#FFF5005C] mb-[-10px] ml-[10px] text-16 relative rounded p-4 w-[200px]"
-              text="Выберите вагон!"
               // subClass="before:border-b-red"
+              text="Выберите вагон!"
             ></Notification>
           )}
           <div className="flex justify-between items-center gap-4 bg-[#FFD98F] h-[37px] w-full mt-5">
@@ -173,6 +178,7 @@ export default function ConnectedCoach({ item, setVersion }) {
                 <CoachCard item={coach.item}></CoachCard>
               </div>
               <CoachMap
+                seatCount={seatCount}
                 seats={coach.item.seats}
                 number={coach.number}
                 type={coach.item.coach.class_type}
@@ -189,6 +195,7 @@ export default function ConnectedCoach({ item, setVersion }) {
                       JSON.stringify({
                         ...item,
                         dateStart,
+                        seatCount,
                         dateEnd,
                         price: coach.price,
                         chosenSeats: coach.chooseSeat,

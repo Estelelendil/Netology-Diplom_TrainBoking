@@ -16,7 +16,7 @@ export default function FinalPage({ data: dadata, goBack, info, goBackBack }) {
       body: JSON.stringify({ ...dadata }),
     }).then((res) => {
       if (res.status === 200) {
-        navigate(`/result?price=${PriceSum(info.price, dadata.departure.seats.length)}&name=${fullName}`);
+        navigate(`/result?price=${PriceSum(info.price, dadata.departure.seats)}&name=${fullName}`);
       }
       console.log("res", res);
     });
@@ -43,7 +43,7 @@ export default function FinalPage({ data: dadata, goBack, info, goBackBack }) {
             <div className="flex gap-6 items-center">
               <h3 className=" text-24 ">Всего</h3>
               <div className="flex gap-4 items-center">
-                <p className="text-24 font-bold">{PriceSum(info.price, dadata.departure.seats.length)}</p>
+                <p className="text-24 font-bold">{PriceSum(info.price, dadata.departure.seats)}</p>
                 <p className="text-24 text-slate-500">₽</p>
               </div>
             </div>

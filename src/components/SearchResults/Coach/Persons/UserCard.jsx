@@ -24,7 +24,7 @@ export default function UserCard({ goBack, persons, coachId, info, directionId, 
           person_info: { ...persInfo, document_data: `${document_series || ""} ${document_number}` },
           seat_number: info.chosenSeats[index],
           is_child: !item.is_adult,
-          include_children_seat: false,
+          include_children_seat: info.seatCount.baby !== "0",
         });
         console.log("seats", seats);
         return null;

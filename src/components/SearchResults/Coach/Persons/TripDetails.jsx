@@ -119,7 +119,9 @@ export default function TripDetails({ item, persons }) {
                   <div key={`${person.name}${index}`} className="flex justify-between text-white">
                     <p>{person.is_adult === "false" ? "Ребенок" : "Взрослый"}</p>
                     <div className="flex gap-3">
-                      <p className="font-bold">{`${item.price[index]}`}</p>
+                      <p className="font-bold">{`${
+                        person.is_adult === "false" ? item.price[index] * 0.6 : item.price[index]
+                      }`}</p>
                       <p>₽</p>
                     </div>
                   </div>
@@ -130,7 +132,7 @@ export default function TripDetails({ item, persons }) {
           <div className="flex justify-between text-white border-t-1 border-slate-100 pt-8 ">
             <p className="uppercase font-bold text-white text-24">ИТОГ</p>
             <div className="flex items-center gap-4 ">
-              <p className="text-orange font-bold text-30">{PriceSum(item.price, persons.length)} </p>
+              <p className="text-orange font-bold text-30">{PriceSum(item.price, persons, item.seatCount.children)}</p>
               {/* <p className="text-orange font-bold text-24">{summ}</p> */}
               <p className="text-20">₽</p>
             </div>
