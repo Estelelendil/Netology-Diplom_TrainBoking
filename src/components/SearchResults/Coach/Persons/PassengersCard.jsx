@@ -142,6 +142,7 @@ export default function PassengersCard({ setPerson, person, index, removePers, a
                 text="Cерия"
                 defaultValue={person?.document_series}
                 placeholder="ХХХХ"
+                type="number"
                 control={control}
                 required
                 name="document_series"
@@ -152,6 +153,7 @@ export default function PassengersCard({ setPerson, person, index, removePers, a
               text="Номер"
               placeholder="ХХХХХХ"
               control={control}
+              type="number"
               required
               defaultValue={person?.document_number || person.document_data}
               name="document_number"

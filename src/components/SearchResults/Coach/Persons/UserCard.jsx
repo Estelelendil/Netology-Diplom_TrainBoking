@@ -103,6 +103,7 @@ export default function UserCard({ goBack, persons, coachId, info, directionId, 
               <div className="flex flex-col w-1/2 gap-6 px-[30px]">
                 <MyInput
                   text="Телефон"
+                  type="number"
                   defaultValue={finalData?.user?.phone || user?.phone}
                   control={control}
                   name="phone"
@@ -111,6 +112,7 @@ export default function UserCard({ goBack, persons, coachId, info, directionId, 
 
                 <MyInput
                   text="E-mail"
+                  type="email"
                   defaultValue={finalData?.user?.email || user?.email}
                   control={control}
                   name="email"
