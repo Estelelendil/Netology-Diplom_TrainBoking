@@ -38,7 +38,7 @@ export default function SearchMain({ setStep, step, setSearchParams, searchParam
   };
   // const router=useRouter()
   const classClass = classNames({
-    "self-end": step !== 0,
+    " ": step !== 0,
   });
   const mainClass = classNames({
     " flex   px-[24px] pb-[32px] gap-[40px]": true,
@@ -64,7 +64,7 @@ export default function SearchMain({ setStep, step, setSearchParams, searchParam
       {/* {!data ? ( */}
       <form
         onSubmit={handleSubmit(submitSearch)}
-        className="bg-black/70 flex gap-0 flex-col px-[24px] pt-[79px] pb-[52px]"
+        className="bg-black/70 flex gap-0 flex-col px-[24px] pt-[79px] pb-[52px] mt-[100px]"
       >
         <div className={mainClass}>
           <div className="flex flex-col">

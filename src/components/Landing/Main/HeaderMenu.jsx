@@ -13,12 +13,12 @@ export default function HeaderMenu() {
   const containerClass = classNames({
     // flex: true,
     " flex justify-center p-l-[50px] gap-[120px]": stepSearch === 0,
-    "flex flex-col justify-end justifyself-end": stepSearch !== 0,
+    "flex flex-col justify-center items-center": stepSearch !== 0,
   });
   const mainClass = classNames({
-    "h-[993px] flex flex-col justify-between  bg-cover border-b-8 border-orange": true,
-    "bg-[url('img/search.png')]": stepSearch === 0,
-    "bg-[url('img/search2.png')]": stepSearch !== 0,
+    "h-[993px] flex flex-col   bg-cover border-b-8 border-orange": true,
+    "bg-[url('img/search.png')] justify-between pt-[100px]": stepSearch === 0,
+    "bg-[url('img/search2.png')] justify-end": stepSearch !== 0,
   });
 
   console.log("searchStep", stepSearch);
