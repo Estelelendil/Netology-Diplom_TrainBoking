@@ -57,7 +57,7 @@ export default function ResultPage() {
           </div>
         </div>
         <div className="flex flex-col items-center gap-10 py-14 w-full justify-center">
-          <h1 className="text-32 font-bold ">{` ${correctName[0]} ${correctName[1]}!`}</h1>
+          <h1 className="text-32 font-bold ">{` ${correctName[0]} ${correctName[1] || ""}!`}</h1>
           <p className="text-22 w-3/4">
             Ваш заказ успешно оформлен. В ближайшее время с вами свяжется наш оператор для подтверждения.
           </p>
@@ -71,7 +71,7 @@ export default function ResultPage() {
             <Stars />
           </div>
           <MyButton
-            className={" w-[250px] p-4 h-[100px] border-black font-bold"}
+            className={" w-[250px] p-4 h-[100px] !border-black font-bold"}
             label="Вернуться на главную"
             color="transparent"
             onClick={() => navigate("/")}

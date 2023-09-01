@@ -6,15 +6,27 @@ import InputCalendar from "../../../UI/InputCalendar";
 import MyButton from "../../../UI/MyButton";
 
 export default function PassengersCard({ setPerson, person, index, removePers, addPassenger }) {
-  const { control, handleSubmit, data, setValue } = useForm(true);
+  const {
+    control,
+    handleSubmit,
+    data,
+    setValue,
+    // register,
+    // formState: { errors, isValid },
+  } = useForm(true);
   const [gender, setGender] = useState(person.gender || "true");
   const [adult, setAdult] = useState(person.is_adult || "true");
 
   const onSubmit = (data) => {
-    console.log("Submit pas data", data, person.id);
-    if (data)
+    // if (errors) {
+    //   alert(errors);
+    //   console.log("Errors", errors);
+    // }
+    if (data) {
+      console.log("Submit pas data", data, person.id);
       setPerson({ ...data, gender, id: person.id, document_type: adult === "true" ? "паспорт" : "свидетельство" });
-    addPassenger();
+      addPassenger();
+    }
   };
 
   console.log("person gender", gender, person.gender);
@@ -140,9 +152,11 @@ export default function PassengersCard({ setPerson, person, index, removePers, a
             {adult === "true" && (
               <MyInput
                 text="Cерия"
+                min={4}
+                max={4}
                 defaultValue={person?.document_series}
                 placeholder="ХХХХ"
-                type="number"
+                type={"number"}
                 control={control}
                 required
                 name="document_series"
@@ -151,6 +165,9 @@ export default function PassengersCard({ setPerson, person, index, removePers, a
             )}
             <MyInput
               text="Номер"
+              min={6}
+              max={6}
+              // {...register("document_number", { required: true, minLength: 6 })}
               placeholder="ХХХХХХ"
               control={control}
               type="number"

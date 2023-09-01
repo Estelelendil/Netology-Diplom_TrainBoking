@@ -28,7 +28,7 @@ export default function ConnectedPersons() {
 
   const [persons, setPersons] = useState([{ id: 1 }]);
   const afterClass = classNames({
-    "text-14 text-red": true,
+    "text-14 text-red mt-[-17px]": true,
     hidden: persons.every((item) => {
       return item.first_name ? true : false;
     }),

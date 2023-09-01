@@ -104,6 +104,7 @@ export default function UserCard({ goBack, persons, coachId, info, directionId, 
                 <MyInput
                   text="Телефон"
                   type="number"
+                  min={7}
                   defaultValue={finalData?.user?.phone || user?.phone}
                   control={control}
                   name="phone"
