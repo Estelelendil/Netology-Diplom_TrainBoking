@@ -11,7 +11,8 @@ export default function MyInput({ placeholder, text, setValue, name, type, requi
       <input
         required={required}
         name={name}
-        value={defaultValue}
+        defaultValue={defaultValue}
+        // value={defaultValue}
         className={inputClassName}
         type={type || "text"}
         placeholder={placeholder}

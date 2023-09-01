@@ -73,9 +73,9 @@ export default function UserCard({ goBack, persons, coachId, info, directionId, 
             {/* <button className="text-gray">❌</button> */}
             <form
               onSubmit={handleSubmit(onSubmit)}
-              className="flex flex-col gap-[25px] [&_span]:text-gray [&_span]:text-16 [&_span]:w-[150px] [&_span]:mb-[-15px] px-[30px]"
+              className="flex flex-col gap-[25px] [&_span]:text-gray [&_span]:text-16 [&_span]:w-[150px] [&_span]:mb-[-15px] "
             >
-              <div className="flex gap-[30px] h-[50px] w-full  mb-6">
+              <div className="flex gap-[30px] h-[50px] w-full px-[30px]  mb-6">
                 <MyInput
                   text="Имя"
                   control={control}
@@ -100,7 +100,7 @@ export default function UserCard({ goBack, persons, coachId, info, directionId, 
                   setValue={setValue}
                 />
               </div>
-              <div className="flex flex-col w-1/2 gap-6">
+              <div className="flex flex-col w-1/2 gap-6 px-[30px]">
                 <MyInput
                   text="Телефон"
                   defaultValue={finalData?.user?.phone || user?.phone}
@@ -141,7 +141,7 @@ export default function UserCard({ goBack, persons, coachId, info, directionId, 
                   <p className="text-slate-700">Visa QIWI Wallet</p>
                 </div>
               </div>
-              <div className="flex justify-between mt-6">
+              <div className="flex justify-between mt-6 px-[30px]">
                 <MyButton
                   className={" w-[250px] p-4 h-[100px]"}
                   label="Назад"

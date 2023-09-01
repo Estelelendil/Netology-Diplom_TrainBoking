@@ -7,15 +7,16 @@ import MyButton from "../../../UI/MyButton";
 
 export default function PassengersCard({ setPerson, person, index, removePers, addPassenger }) {
   const { control, handleSubmit, data, setValue } = useForm(true);
-
   const [gender, setGender] = useState(person.gender || "true");
   const [adult, setAdult] = useState(person.is_adult || "true");
+
   const onSubmit = (data) => {
     console.log("Submit pas data", data, person.id);
     if (data)
       setPerson({ ...data, gender, id: person.id, document_type: adult === "true" ? "паспорт" : "свидетельство" });
     addPassenger();
   };
+
   console.log("person gender", gender, person.gender);
   const checkboxManClass = classNames({
     "w-[100px] h-[55px] rounded-l-lg border-l-1 border-y-1 border-[#d9d9d9] text-center pt-3 font-bold text-20": true,
@@ -36,10 +37,10 @@ export default function PassengersCard({ setPerson, person, index, removePers, a
       </div>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="flex flex-col gap-[25px] [&_span]:text-gray [&_span]:text-16 [&_span]:w-[150px] [&_span]:mb-[-15px] px-[30px]"
+        className="flex flex-col gap-[25px] [&_span]:text-gray [&_span]:text-16 [&_span]:w-[150px] [&_span]:mb-[-15px] "
       >
         <select
-          className="h-[50px] w-[240px] bg-white border-1 rounded border-[#d9d9d9] text-gray pl-[10px]"
+          className="h-[50px] w-[240px] bg-white border-1 rounded border-[#d9d9d9] text-gray pl-[10px] mx-[30px]"
           name="is_adult"
           control={control}
           defaultValue={person.is_adult || "true"}
@@ -48,14 +49,14 @@ export default function PassengersCard({ setPerson, person, index, removePers, a
             setAdult(e.target.value === "true" ? "true" : "false");
           }}
         >
-          <option className="text-gray pl-10px" value="false">
+          <option disabled={index === 0} className="text-gray pl-10px" value="false">
             Детский
           </option>
           <option className="text-gray pl-10px" selected value="true">
             Взрослый
           </option>
         </select>
-        <div className="flex gap-[30px] h-[50px] ">
+        <div className="flex gap-[30px] h-[50px] px-[30px]">
           <MyInput
             text="Имя"
             control={control}
@@ -80,7 +81,7 @@ export default function PassengersCard({ setPerson, person, index, removePers, a
             setValue={setValue}
           />
         </div>
-        <div className="flex items-center gap-[30px] mt-[30px]">
+        <div className="flex items-center gap-[30px] mt-[30px] px-[30px]">
           <div className="flex flex-col gap-[15px]">
             <span className="w-[150px] text-gray text-16">Пол</span>
             <div className="flex">
@@ -103,7 +104,7 @@ export default function PassengersCard({ setPerson, person, index, removePers, a
           />
         </div>
         <div>
-          <div className="flex gap-[30px] border-t-1 border-slate-200 pt-8 mt-8">
+          <div className="flex gap-[30px] border-t-1 border-slate-200 pt-8 mt-8 px-[30px]">
             <div className="flex flex-col gap-[15px]">
               <span className="w-[150px] text-gray text-16">Тип документа</span>
               {adult === "false" ? (
@@ -162,7 +163,7 @@ export default function PassengersCard({ setPerson, person, index, removePers, a
           <div className="w-[250px] self-end ">
             <MyButton
               className={"h-[52px] py-1"}
-              label="Следующий пассажир"
+              label="Сохранить пассажира"
               color="transparent"
               onClick={() => onSubmit()}
             ></MyButton>
