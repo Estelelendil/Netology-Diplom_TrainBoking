@@ -8,6 +8,8 @@ import classNames from "classnames";
 import CoachCard from "./CoachCard";
 import CoachMap from "./CoachMap";
 import { useNavigate } from "react-router";
+import { isEmpty } from "lodash";
+import Notification from "../../UI/Notification";
 
 export default function ConnectedCoach({ item, setVersion }) {
   const [searchParams, setSearchParams] = useState({});
@@ -36,6 +38,7 @@ export default function ConnectedCoach({ item, setVersion }) {
   const [data, loading, error, callback] = useLazyJsonFetch();
   const [coach, setCoach] = useState();
   const navigate = useNavigate();
+  console.log("COACH", coach);
   //информация по id отправления на карту поезда
   useEffect(() => {
     setCoach({});
@@ -137,6 +140,13 @@ export default function ConnectedCoach({ item, setVersion }) {
 
       {data && (
         <div>
+          {isEmpty(coach) && (
+            <Notification
+              mainClass="bg-[#FFF5005C] mb-[-10px] ml-[10px] text-16 relative rounded p-4 w-[200px]"
+              text="Выберите вагон!"
+              // subClass="before:border-b-red"
+            ></Notification>
+          )}
           <div className="flex justify-between items-center gap-4 bg-[#FFD98F] h-[37px] w-full mt-5">
             <div className="flex gap-2 items-center">
               <p>Вагоны</p>

@@ -10,9 +10,10 @@ function getFormattedDate(date) {
   return new Date(date).toISOString().replace(/T.*/, "").split("-").join("-");
 }
 
-export default function InputCalendar({ placeholder, required, name, text, control }) {
+export default function InputCalendar({ placeholder, required, name, text, control, className }) {
   const inputClassName = classNames({
     "p-15 border-[1px] border-[#d9d9d9] rounded-[5px]  bg-white ": true,
+    ...(className && { [className]: true }),
   });
   // const [value, setValue] = useState();
   const [openCalendar, setOpenCalendar] = useState(false);
@@ -30,6 +31,7 @@ export default function InputCalendar({ placeholder, required, name, text, contr
         <input
           required={required}
           name={field.name}
+          type="date"
           className={inputClassName}
           onClick={() => setOpenCalendar(!openCalendar)}
           value={date}

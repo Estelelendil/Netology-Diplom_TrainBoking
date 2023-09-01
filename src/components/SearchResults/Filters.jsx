@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import ToggleSwitch from "../UI/ToggleSwitch";
 import MyRangeSlider from "../UI/MyRangeSlider";
 import classNames from "classnames";
+import MyButton from "../UI/MyButton";
 
 export default function Filters({ setParams, params, pass }) {
   const { control, handleSubmit } = useForm({
@@ -38,7 +39,7 @@ export default function Filters({ setParams, params, pass }) {
   };
   const mainClass = classNames({
     "w-[360px]  bg-[#3E3C41] mt-9 px-[20px] pt-[10px]": true,
-    "h-[890px]": !pass,
+    "h-[950px]": !pass,
     "h-[1500x]": pass,
   });
   return (
@@ -47,9 +48,9 @@ export default function Filters({ setParams, params, pass }) {
         <div className="flex flex-col justify-start items-center border-b-1 border-[#E5E5E5] pb-[20px]">
           {/* <Calendar onChange={setDateFrom} value={dateFrom} /> */}
           <h2 className="text-white text-30 self-start pl-[10px] pt-[10px]">Дата поездки</h2>
-          <InputCalendar control={control} required name="date_start" placeholder="ДД/ММ/ГГ" />
+          <InputCalendar className="w-full" control={control} required name="date_start" placeholder="ДД/ММ/ГГ" />
           <h2 className="text-white text-30 self-start pl-[10px] pt-[10px]">Дата возвращения</h2>
-          <InputCalendar control={control} required name="date_end" placeholder="ДД/ММ/ГГ" />
+          <InputCalendar className="w-full" control={control} required name="date_end" placeholder="ДД/ММ/ГГ" />
           {/* <Input name='dateto' placeholder='ДД/ММ/ГГ'/> */}
         </div>
         <div className="flex flex-col gap-[164x] border-b-1 border-[#E5E5E5] py-3">
@@ -114,8 +115,8 @@ export default function Filters({ setParams, params, pass }) {
             </button>
           </div>
         </div>
-
-        <button>Кусь</button>
+        <MyButton label="Применить" color="transparent" className="w-full text-white"></MyButton>
+        {/* <button>Кусь</button> */}
       </form>
     </div>
   );

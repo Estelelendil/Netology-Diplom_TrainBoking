@@ -98,8 +98,14 @@ export default function SearchMain({ setStep, step, setSearchParams, searchParam
             <h2 className="text-white text-30">Дата</h2>
             <div className="flex justify-between w-full gap-[40px]">
               {/* <Calendar onChange={setDateFrom} value={dateFrom} /> */}
-              <InputCalendar control={control} required name="date_start" placeholder="ДД/ММ/ГГ" />
-              <InputCalendar control={control} required name="date_end" placeholder="ДД/ММ/ГГ" />
+              <InputCalendar
+                className="w-[325px]"
+                control={control}
+                required
+                name="date_start"
+                placeholder="ДД/ММ/ГГ"
+              />
+              <InputCalendar className="w-[325px]" control={control} required name="date_end" placeholder="ДД/ММ/ГГ" />
               {/* <Input name='dateto' placeholder='ДД/ММ/ГГ'/> */}
             </div>
           </div>
